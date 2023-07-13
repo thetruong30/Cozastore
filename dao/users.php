@@ -4,7 +4,7 @@ require_once 'pdo.php';
 function user_insert($user_id, $user_name, $user_email, $user_password, $user_img, $user_roll, $user_address, $user_phonenumber)
 {
     $sql = "INSERT INTO users(user_id, user_name, user_email, user_password, user_img, user_roll, user_address,user_phonenumber) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
-    pdo_execute($sql, $user_id, $user_name, $user_email, $user_password, $user_img, $user_roll == 0, $user_address,$user_phonenumber );
+    pdo_execute($sql, $user_id, $user_name, $user_email, $user_password, $user_img, $user_roll == 0, $user_address, $user_phonenumber);
 }
 function check_user($user_id, $user_password)
 {
@@ -17,22 +17,17 @@ function check_email($user_email)
     return pdo_query_one($sql, $user_email);
 }
 
-function user_update($user_id, $user_name, $user_email, $user_password, $user_img, $user_roll, $user_address,$user_phonenumber)
+function user_update($user_id, $user_name, $user_email, $user_password, $user_img, $user_roll, $user_address, $user_phonenumber)
 {
     $sql = "UPDATE users SET user_name=?,user_email=?,user_password=?,user_img=?,user_roll=?,user_address=? ,user_phonenumber=? WHERE user_id=?";
-    pdo_execute($sql, $user_name, $user_email, $user_password, $user_img, $user_roll == 0, $user_address,$user_phonenumber,$user_id);
+    pdo_execute($sql, $user_name, $user_email, $user_password, $user_img, $user_roll == 0, $user_address, $user_phonenumber, $user_id);
 }
 
 function user_delete($user_id)
 {
     $sql = "DELETE FROM users  WHERE user_id=?";
-    if (is_array($user_id)) {
-        foreach ($user_id as $ma) {
-            pdo_execute($sql, $ma);
-        }
-    } else {
-        pdo_execute($sql, $user_id);
-    }
+
+    pdo_execute($sql, $user_id);
 }
 
 function user_select_all()
