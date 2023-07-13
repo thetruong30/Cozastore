@@ -1,0 +1,25 @@
+.menu__cha{
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
+.menu__con{
+    display: none;
+    position: absolute;
+    width: 100%;
+}
+.menu__con li{
+    border-bottom: 1px lightgray solid;
+}
+.menu__cha:hover>ul{
+    display: block;
+    padding-left: 20px;
+}
+.menu__cha:hover{
+    height:350px;
+}
+.menu__cha li{
+    min-height: 50px;
+}
+.menu__cha>ul:hover li{
+    display: block;
+}
