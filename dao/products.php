@@ -46,7 +46,7 @@ function products_select_by_id($product_id)
 
 function products_exist($product_id)
 {
-    $sql = "SELECT count(*) FROM products WHERE ma_hh=?";
+    $sql = "SELECT count(*) FROM products WHERE product_id=?";
     return pdo_query_value($sql, $product_id) > 0;
 }
 
