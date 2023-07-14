@@ -2,15 +2,15 @@
     require_once "pdo.php";
 
     // thêm color
-    function color_create($color_name, $color_code){
-        $sql = "insert into color(color_name,color_code) values(?,?)";
-        pdo_execute($sql,$color_name,$color_code);
+    function color_create($color_name){
+        $sql = "insert into color(color_name) values(?)";
+        pdo_execute($sql,$color_name);
     }
 
     // sửa color
-    function color_edit($color_name, $color_code, $color_id){
-        $sql = 'update color set color_name=?,color_code=? where color_id=?';
-        pdo_execute($sql,$color_name,$color_code,$color_id);
+    function color_edit($color_name,$color_id){
+        $sql = 'update color set color_name=? where color_id=?';
+        pdo_execute($sql,$color_name,$color_id);
     }
 
     // xóa color
@@ -23,6 +23,11 @@
     function color_select_all(){
         $sql = 'select * from color';
         return pdo_query($sql);
+    }
+    // select color theo id
+    function color_select_by_id($color_id){
+        $sql = 'select * from color where color_id=?';
+        return pdo_query_one($sql, $color_id);
     }
 
 ?>

@@ -121,17 +121,17 @@
                             <ul class="menu__con">
                                 
                                 <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=colors_btn_add" aria-expanded="false">
                                         <span class="hide-menu">Color</span>
                                     </a>
                                 </li>
                                 <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=sizes_btn_add" aria-expanded="false">
                                         <span class="hide-menu">Size</span>
                                     </a>
                                 </li>
                                 <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=tags_btn_add" aria-expanded="false">
                                         <span class="hide-menu">Tag</span>
                                     </a>
                                 </li>

@@ -23,4 +23,8 @@ function size_select_all(){
     $sql = 'select * from size';
     return pdo_query($sql);
 }
-?>
+// select size theo id
+function size_select_by_id($size_id){
+    $sql = 'select * from size where size_id=?';
+    return pdo_query_one($sql,$size_id);
+}
