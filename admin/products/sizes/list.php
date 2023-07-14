@@ -35,7 +35,7 @@
                          
                          <td>' . $size_id . '</td>
                          <td>' . $size_name . '</td>
-                         <td><a href="' . $updatepro . '"><input type="button" value="Update"></a> <a href="' . $delpro . '"><input type="button" onclick="myFunction()" value="Delete"></a></td>
+                         <td><a href="' . $updatepro . '"><input type="button" value="Update"></a> <a href="' . $delpro . '"><input type="button" onclick="return confirm(`Do you want delete?`);" value="Delete"></a></td>
                          </tr>';
                 }
 

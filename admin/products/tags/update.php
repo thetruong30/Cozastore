@@ -10,6 +10,7 @@
         <div class="col mb10 mt">
             <input type="submit" name="btn_update" value="UPDATE">
             <input type="reset" value="RESET">
+            <input type="hidden" name="tag_id" value="<?= $tag_id ?? '' ?>">
             <a href="index.php?act=tags_btn_list"><input type="button" value="LIST"></a>
         </div>
     </form>

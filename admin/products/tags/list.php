@@ -4,7 +4,8 @@
         <h1>TAGS</h1>
     </div>
     <?php
-    if (isset($thongbao)) {
+    if (isset($_GET['thongbao'])) {
+        $thongbao = $_GET['thongbao'];
         echo '<script type="text/javascript">
 
             window.onload = function () { alert("' . $thongbao . '"); }
@@ -21,24 +22,35 @@
                     <th>NAME TAG</th>
                     <th></th>
                 </tr>
-                <?php
+                
 
-                foreach ($tags as $tag) {
-                    extract($tag);
-                    $updatepro = "index.php?act=tag_btn_edit&tag_id=" . $tag_id;
-                    $delpro = "index.php?act=tag_btn_delete&tag_id=" . $tag_id;
+                <!-- // foreach ($tags as $tag) {
+                //     extract($tag);
+                //     $updatepro = "index.php?act=tag_btn_edit&tag_id=" . $tag_id;
+                //     $delpro = "index.php?act=tag_btn_delete&tag_id=" . $tag_id;
                     
 
-                    echo '
-                         <tr>
+                //     echo '
+                //          <tr>
                          
-                         <td>' . $tag_id . '</td>
-                         <td>' . $tag_name . '</td>
-                         <td><a href="' . $updatepro . '"><input type="button" value="Update"></a> <a href="' . $delpro . '"><input type="button" onclick="myFunction()" value="Delete"></a></td>
-                         </tr>';
-                }
+                //          <td>' . $tag_id . '</td>
+                //          <td>' . $tag_name . '</td>
+                //          <td><a href="' . $updatepro . '"><input type="button" value="Update"></a> <a href="' . $delpro . '"><input type="button" onclick="myFunction()" value="Delete"></a></td>
+                //          </tr>';
+                // } -->
 
-                ?>
+                <?php foreach($tags as $tag) : ?>
+                    <?php extract($tag); ?>
+                    <tr>
+                        <td><?= $tag_id ?></td>
+                        <td><?= $tag_name ?></td>
+                        <td>
+                        <a href="index.php?act=tags_btn_edit&tag_id=<?= $tag_id ?>"><input type="button" value="Update"></a> 
+                        <a href="index.php?act=tags_btn_delete&tag_id=<?= $tag_id ?>"><input type="button" onclick="return confirm('Do you want delete?')" value="Delete"></a>
+                        </td>
+                    </tr>
+
+                <?php endforeach ?>
             </table>
         </div>
         <div class="row mb10 text">

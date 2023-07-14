@@ -55,7 +55,7 @@ if (isset($_GET['act'])) {
                 if (!isset($errors)) {
                     products_insert($product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption);
                     $thongbao = "Thêm thành công";
-                    header('location: index.php?act=products');
+                    header("location: index.php?act=products&thongbao=$thongbao");
                 } else {
                     include "products/product/add.php";
                 }
@@ -63,17 +63,6 @@ if (isset($_GET['act'])) {
                 include "products/product/add.php";
             }
             break;
-            case "addkho":
-                $product_id = $_GET['product_id'];
-                foreach ($colors as $color) {
-                    extract($color);
-                    foreach ($sizes as $size) {
-                        extract($size);
-                        product_detail_insert($product_id, $color_id, $size_id);
-                    }
-                }
-                header('location: index.php?act=products');
-                break;
         case 'products':
             $products = products_select_all();
             include "products/product/list.php";
@@ -87,7 +76,7 @@ if (isset($_GET['act'])) {
                 $thongbao = "Xóa thành công";
             }
             $products = products_select_all();
-            header('location: index.php?act=products');
+            header("location: index.php?act=products&thongbao=$thongbao");
             break;
         case 'updatepro':
             if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
@@ -126,12 +115,157 @@ if (isset($_GET['act'])) {
                 if (!isset($errors)) {
                     products_update($product_id, $product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption);
                     $thongbao = "Cập nhật thành công";
-                    header('location: index.php?act=products');
+                    header("location: index.php?act=products&thongbao=$thongbao");
                 } else {
                     include "products/product/update.php";
                 }
             }
             break;
+
+        case 'colors_btn_add':
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $color_name = $_POST['color_name'];
+                if ($color_name == '') {
+                    $errors['color_name'] = 'Tên màu không được bỏ trống, mời nhập';
+                }
+                if (!isset($errors)) {
+                    color_create($color_name);
+                    $colors = color_select_all();
+                    extract($colors);
+                    $thongbao = 'Thêm dữ liệu thành công';
+                    include 'products/colors/list.php';
+                } else {
+                    include 'products/colors/add.php';
+                }
+            } else {
+                include 'products/colors/add.php';
+            }
+            break;
+        case "colors_btn_delete":
+            $id_color = $_GET['color_id'];
+            color_delete($id_color);
+            header('location: index.php?act=color_list');
+
+            break;
+        case 'color_list':
+            $colors = color_select_all();
+            extract($colors);
+            include 'products/colors/list.php';
+            break;
+        case 'colors_btn_edit':
+            if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
+                $color_id = $_POST['color_id'];
+                $color_name = $_POST['color_name'];
+                color_edit($color_name, $color_id);
+                $thongbao = 'Cập nhật dữ liệu thành công';
+                $colors = color_select_all();
+                extract($colors);
+                include 'products/colors/list.php';
+            } else {
+                $color_id = $_GET['color_id'];
+                $color = color_select_by_id($color_id);
+                extract($color);
+                include 'products/colors/update.php';
+            }
+
+            break;
+        case "sizes_btn_add":
+            if (isset($_POST['btn_insert']) && ($_POST['btn_insert'])) {
+                $size_name = $_POST['size_name'];
+
+                if (strlen($size_name) == 0) {
+                    $errors['size_name'] = 'Tên size không được bỏ trống, mời nhập';
+                }
+
+                if (!isset($errors)) {
+                    size_create($size_name);
+                    $thongbao = 'Thêm dữ liệu thành công';
+                    $sizes = size_select_all();
+                    extract($sizes);
+                    include 'products/sizes/list.php';
+                } else {
+                    include 'products/sizes/add.php';
+                }
+            } else {
+                include 'products/sizes/add.php';
+            }
+            break;
+        case "sizes_btn_list":
+            $sizes = size_select_all();
+            extract($sizes);
+            include 'products/sizes/list.php';
+            break;
+        case "sizes_btn_edit":
+            if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
+                $size_id = $_POST['size_id'];
+                $size_name = $_POST['size_name'];
+
+                size_edit($size_name, $size_id);
+                $thongbao = 'Cập nhật dữ liệu thành công';
+                header("location: index.php?act=sizes_btn_list&thongbao=$thongbao");
+            } else {
+                $size_id = $_GET['size_id'];
+                $size = size_select_by_id($size_id);
+                extract($size);
+                include 'products/sizes/update.php';
+            }
+            break;
+        case "sizes_btn_delete":
+            $size_id = $_GET['size_id'];
+            size_delete($size_id);
+            $thongbao = 'Xóa dữ liệu thành công';
+            $sizes = size_select_all();
+            extract($sizes);
+            include 'products/sizes/list.php';
+            break;
+
+            // Tags
+        case "tags_btn_add":
+            if (isset($_POST['btn_insert']) && ($_POST['btn_insert'])) {
+                $tag_name = $_POST['tag_name'];
+
+                if (strlen($tag_name) == 0) {
+                    $errors['tag_name'] = 'Tên tag không được bỏ trống, mời nhập';
+                }
+
+                if (!isset($errors)) {
+                    tag_insert($tag_name);
+                    $thongbao = 'Thêm dữ liệu thành công';
+                    header("location: index.php?act=tags_btn_list&thongbao=$thongbao");
+                } else {
+                    include 'products/tags/add.php';
+                }
+            } else {
+                include 'products/tags/add.php';
+            }
+            break;
+        case "tags_btn_list":
+            $tags = tag_select_all();
+            extract($tags);
+            include 'products/tags/list.php';
+            break;
+        case "tags_btn_edit":
+            if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
+                $tag_id = $_POST['tag_id'];
+                $tag_name = $_POST['tag_name'];
+
+                tag_update($tag_id, $tag_name);
+                $thongbao = 'Cập nhật dữ liệu thành công';
+                header("location: index.php?act=tags_btn_list&thongbao=$thongbao");
+            } else {
+                $tag_id = $_GET['tag_id'];
+                $tag = tag_select_by_id($tag_id);
+                extract($tag);
+                include 'products/tags/update.php';
+            }
+            break;
+        case "tags_btn_delete":
+            $tag_id = $_GET['tag_id'];
+            tag_delete($tag_id);
+            $thongbao = 'Xóa dữ liệu thành công';
+            header("location: index.php?act=tags_btn_list&thongbao=$thongbao");
+            break;
+
         default:
             include "home.php";
             break;

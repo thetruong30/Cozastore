@@ -4,7 +4,8 @@
         <h1>COLORS</h1>
     </div>
     <?php
-    if (isset($thongbao)) {
+    if (isset($_GET['thongbao'])) {
+        $thongbao = $_GET['thongbao'];
         echo '<script type="text/javascript">
 
             window.onload = function () { alert("' . $thongbao . '"); }
@@ -34,7 +35,7 @@
                          
                          <td>' . $color_id . '</td>
                          <td>' . $color_name . '</td>
-                         <td><a href="' . $updatepro . '"><input type="button" value="Update"></a> <a href="' . $delpro . '"><input type="button" onclick="myFunction()" value="Delete"></a></td>
+                         <td><a href="' . $updatepro . '"><input type="button" value="Update"></a> <a href="' . $delpro . '"><input type="button" onclick="return confirm(`Do you want delete?`);" value="Delete"></a></td>
                          </tr>';
                 }
 

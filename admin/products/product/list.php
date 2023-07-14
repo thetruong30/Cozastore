@@ -3,7 +3,8 @@
         <h1>PRODUCTS</h1>
     </div>
     <?php
-    if (isset($thongbao)) {
+    if (isset($_GET['thongbao'])) {
+        $thongbao = $_GET['thongbao'];
         echo '<script type="text/javascript">
 
             window.onload = function () { alert("' . $thongbao . '"); }
@@ -11,14 +12,14 @@
 </script>';
     }
     ?>
-    <script language="javascript">
+    <!-- <script language="javascript">
             function confirmation() {
                 var result = confirm("Are you sure to delete?");
                 if (result) {
                     $delpro = "index.php?act=delpro&product_id=" . $product_id;
                 }
             }
-        </script>
+        </script> -->
     <div class="row mt frmcontent">
         <div class="row mb10 mt frmdshanghoa text ">
             <table>
@@ -44,7 +45,7 @@
                         }
                     }
                     $updatepro = "index.php?act=updatepro&product_id=" . $product_id;
-                    $delpro = "index.php?act=products";
+                    $delpro = "index.php?act=delpro&product_id=" . $product_id;
                     echo '
                          <tr>
                          
@@ -54,7 +55,7 @@
                          <td>' . $product_sale . '%</td>
                          <td>' . $product_posting_date . '</td>
                          <td>' . $product_desciption . '</td>
-                         <td><a href="' . $updatepro . '"><input type="button" value="Update"></a> <a href="' . $delpro . '"><input type="button" onclick="confirmation()" value="Delete"></a></td>
+                         <td><a href="' . $updatepro . '"><input type="button" value="Update"></a> <a href="' . $delpro . '"><input type="button" onclick="return confirm(`Do you want delete?`);" value="Delete"></a></td>
                          </tr>';
                 }
 
