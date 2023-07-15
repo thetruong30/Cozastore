@@ -266,6 +266,87 @@ if (isset($_GET['act'])) {
             header("location: index.php?act=tags_btn_list&thongbao=$thongbao");
             break;
 
+        //Category
+        case "addcategory":
+            if (isset($_POST['btn_insert']) && ($_POST['btn_insert'])) {
+                $cate_name = $_POST['cate_name'];
+                $file = $_FILES['cate_img'];
+                $cate_img = $file['name'];
+
+                if ($cate_name == "") {
+                    $errors['cate_name'] = "Tên không được để trống";
+                }
+
+                if ($file['size'] <= 0) {
+                    $errors['cate_img'] = "Bạn cần nhập ảnh";
+                } else {
+                    $img = ['jpg', 'png', 'gif'];
+                    //Lấy phần mở rộng của file
+                    $ext = pathinfo($cate_img, PATHINFO_EXTENSION);
+                    //Kiểm tra xem $ext có trong $img không
+                    if (!in_array($ext, $img)) {
+                        $errors['cate_img'] = "File không phải là ảnh";
+                    }
+                }
+                if (!isset($errors)) {
+                    category_insert($cate_name, $cate_img);
+                    move_uploaded_file($file['tmp_name'], '../upload/' . $cate_img);
+                    $thongbao = "Cập nhật thành công";
+                    header("location: index.php?act=listcategory&thongbao=$thongbao");
+                } else {
+                    include "categories/add.php";
+                }
+                
+            }else{
+                include "categories/add.php";
+            }
+            break;
+            
+            case "listcategory":
+                include "categories/list.php";
+                break;
+
+            case "updatecategory":
+                if (isset($_POST['updatecategory']) && ($_POST['updatecategory'])) {
+                    $cate_id = $_POST['cate_id'];
+                    $cate_name = $_POST['cate_name'];
+                    $file = $_FILES['cate_img'];
+                    $cate_img = $file['name'];
+    
+                    if ($cate_name == "") {
+                        $errors['cate_name'] = "Tên không được để trống";
+                    }
+    
+                    if ($file['size'] > 0) {
+                        $img = ['jpg', 'png', 'gif'];
+                        //lấy tên ảnh mới
+                        $image = $file['name'];
+                        //Lấy phần mở rộng của file
+                        $ext = pathinfo($image, PATHINFO_EXTENSION);
+                        //Kiểm tra xem $ext có trong $img không
+                        if (!in_array($ext, $img)) {
+                            $errors['cate_img'] = "File không phải là ảnh";
+                        }
+                    }
+
+                    if (!isset($errors)) {
+                        category_update($cate_id, $cate_name, $cate_img);
+                        move_uploaded_file($file['tmp_name'], '../upload/' . $cate_img);
+                        $thongbao = "Cập nhật thành công";
+                        header("location: index.php?act=listcategory&thongbao=$thongbao");
+                    }else {
+                        $file = $_FILES['cate_img'];
+                        $cate_img = $file['name'];
+                        include "categories/update.php";
+                    }
+                }else{
+                    $cate_id = $_GET['cate_id'];
+                    $cate = category_select_by_id($cate_id);
+                    extract($cate);
+                    include 'categories/update.php';
+                }
+                break;
+
         default:
             include "home.php";
             break;
