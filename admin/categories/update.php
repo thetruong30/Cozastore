@@ -1,9 +1,7 @@
 <?php
+echo '<h1>'.$cate_img.'</h1>';
  $hinhpath = "../upload/" . $cate_img;
- $img_cate = $cate_img;
- if (is_file($hinhpath)) {
-     $cate_img = "<img src='" . $hinhpath . "' height='80'>";
- } else {
+ if (!is_file($hinhpath)) {
      $cate_img = "no photo";
  }
 ?>
@@ -19,8 +17,9 @@
         
         <div class=" my-3">
             <label for="">Category Image</label> <br>
-            <input type="file" name="cate_img" value="<?= $img_cate ?? '' ?>">
-            <?php echo $cate_img   ?>
+            <input type="file" name="cate_img" >
+            <input type="hidden" name="cate_img" value="<?= $cate_img ?? '' ?>">
+            <img src="<?= $hinhpath ?? '' ?>" height='80'>
             <span style="color:red">
                     <?= $errors['cate_img'] ?? '' ?>
                 </span>

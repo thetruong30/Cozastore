@@ -24,6 +24,8 @@ $sizes = size_select_all();
 extract($sizes);
 $colors = color_select_all();
 extract($colors);
+$users=user_select_all();
+extract($users);
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
@@ -266,7 +268,7 @@ if (isset($_GET['act'])) {
             header("location: index.php?act=tags_btn_list&thongbao=$thongbao");
             break;
 
-        //Category
+            //Category
         case "addcategory":
             if (isset($_POST['btn_insert']) && ($_POST['btn_insert'])) {
                 $cate_name = $_POST['cate_name'];
@@ -291,62 +293,69 @@ if (isset($_GET['act'])) {
                 if (!isset($errors)) {
                     category_insert($cate_name, $cate_img);
                     move_uploaded_file($file['tmp_name'], '../upload/' . $cate_img);
-                    $thongbao = "Cập nhật thành công";
+                    $thongbao = "Thêm thành công";
                     header("location: index.php?act=listcategory&thongbao=$thongbao");
                 } else {
                     include "categories/add.php";
                 }
-                
-            }else{
+            } else {
                 include "categories/add.php";
             }
             break;
-            
-            case "listcategory":
-                include "categories/list.php";
-                break;
 
-            case "updatecategory":
-                if (isset($_POST['updatecategory']) && ($_POST['updatecategory'])) {
-                    $cate_id = $_POST['cate_id'];
-                    $cate_name = $_POST['cate_name'];
-                    $file = $_FILES['cate_img'];
-                    $cate_img = $file['name'];
-    
-                    if ($cate_name == "") {
-                        $errors['cate_name'] = "Tên không được để trống";
-                    }
-    
-                    if ($file['size'] > 0) {
-                        $img = ['jpg', 'png', 'gif'];
-                        //lấy tên ảnh mới
-                        $image = $file['name'];
-                        //Lấy phần mở rộng của file
-                        $ext = pathinfo($image, PATHINFO_EXTENSION);
-                        //Kiểm tra xem $ext có trong $img không
-                        if (!in_array($ext, $img)) {
-                            $errors['cate_img'] = "File không phải là ảnh";
-                        }
-                    }
+        case "listcategory":
+            include "categories/list.php";
+            break;
 
-                    if (!isset($errors)) {
-                        category_update($cate_id, $cate_name, $cate_img);
-                        move_uploaded_file($file['tmp_name'], '../upload/' . $cate_img);
-                        $thongbao = "Cập nhật thành công";
-                        header("location: index.php?act=listcategory&thongbao=$thongbao");
-                    }else {
-                        $file = $_FILES['cate_img'];
-                        $cate_img = $file['name'];
-                        include "categories/update.php";
-                    }
-                }else{
-                    $cate_id = $_GET['cate_id'];
-                    $cate = category_select_by_id($cate_id);
-                    extract($cate);
-                    include 'categories/update.php';
+        case "updatecategory":
+            if (isset($_POST['updatecategory']) && ($_POST['updatecategory'])) {
+                $cate_id = $_POST['cate_id'];
+                $cate_name = $_POST['cate_name'];
+                $file = $_FILES['cate_img'];
+                $cate_img = $file['name'];
+                if ($cate_name == "") {
+                    $errors['cate_name'] = "Tên không được để trống";
                 }
-                break;
 
+                if ($file['size'] > 0) {
+                    $img = ['jpg', 'png', 'gif'];
+                    //lấy tên ảnh mới
+                    $image = $file['name'];
+                    //Lấy phần mở rộng của file
+                    $ext = pathinfo($image, PATHINFO_EXTENSION);
+                    //Kiểm tra xem $ext có trong $img không
+                    if (!in_array($ext, $img)) {
+                        $errors['cate_img'] = "File không phải là ảnh";
+                    }
+                } else {
+                    $cate_img = $_POST['cate_img'];
+                }
+
+                if (!isset($errors)) {
+                    category_update($cate_id, $cate_name, $cate_img);
+                    move_uploaded_file($file['tmp_name'], '../upload/' . $cate_img);
+                    $thongbao = "Cập nhật thành công";
+                    header("location: index.php?act=listcategory&thongbao=$thongbao");
+                } else {
+                    $cate_img = $_POST['cate_img'];
+                    include "categories/update.php";
+                }
+            } else {
+                $cate_id = $_GET['cate_id'];
+                $cate = category_select_by_id($cate_id);
+                extract($cate);
+                include 'categories/update.php';
+            }
+            break;
+        case "delcategory":
+            $cate_id = $_GET['cate_id'];
+            category_delete($cate_id);
+            $thongbao = 'Xóa dữ liệu thành công';
+            header("location: index.php?act=listcategory&thongbao=$thongbao");
+            break;
+        case "users":
+            include "users/list.php";
+            break;
         default:
             include "home.php";
             break;
