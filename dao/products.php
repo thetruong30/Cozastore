@@ -68,3 +68,21 @@ function products_select_keyword($keyword)
         . " WHERE product_name LIKE ? OR product_name LIKE ?";
     return pdo_query($sql, '%' . $keyword . '%', '%' . $keyword . '%');
 }
+
+
+function show_products_home(){
+    $sql = 'SELECT * FROM products INNER JOIN 
+    product_img ON products.product_id=product_img.product_id 
+    INNER JOIN categories ON products.cate_id=categories.cate_id ORDER BY products.product_id DESC LIMIT 8';
+    return pdo_query($sql);
+}
+function show_products_all($first,$second){
+    $sql = "SELECT * FROM product_img INNER JOIN 
+    products ON products.product_id=product_img.product_id 
+    INNER JOIN categories ON products.cate_id=categories.cate_id ORDER BY products.product_id DESC LIMIT $first,$second";
+    return pdo_query($sql);
+}
+function product_img_select_all_by_id($pro_id){
+    $sql = "SELECT * FROM product_img WHERE product_id=?";
+    return pdo_query($sql,$pro_id);
+}
