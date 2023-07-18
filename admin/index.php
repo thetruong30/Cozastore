@@ -82,8 +82,8 @@ if (isset($_GET['act'])) {
         case 'delpro':
             if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
                 $product_id = $_GET['product_id'];
+                review_delete_product($product_id);
                 product_detail_delete($product_id);
-                review_delete($product_id);
                 productimage_delete_product($product_id);
                 products_delete($product_id);
                 $thongbao = "Xóa thành công";
@@ -583,8 +583,8 @@ if (isset($_GET['act'])) {
                 include 'products/product_image/update.php';
             }
             break;
-            case "contact":
-                include "contact/list.php";
+        case "contact":
+            include "contact/list.php";
             break;
         default:
             include "home.php";
