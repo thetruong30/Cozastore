@@ -18,6 +18,11 @@ function productimage_delete ($product_img_id)
     $sql = "DELETE FROM product_img WHERE product_img_id=?";
     pdo_execute($sql, $product_img_id);
 }
+function productimage_delete_product ($product_id)
+{
+    $sql = "DELETE FROM product_img WHERE product_id=?";
+    pdo_execute($sql, $product_id);
+}
 
 function productimage_select_all()
 {

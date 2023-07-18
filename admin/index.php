@@ -83,6 +83,8 @@ if (isset($_GET['act'])) {
             if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
                 $product_id = $_GET['product_id'];
                 product_detail_delete($product_id);
+                review_delete($product_id);
+                productimage_delete_product($product_id);
                 products_delete($product_id);
                 $thongbao = "Xóa thành công";
             }
@@ -459,6 +461,7 @@ if (isset($_GET['act'])) {
             break;
         case "delblog":
             $blog_id = $_GET['blog_id'];
+            comment_delete_blog($blog_id);
             blog_delete($blog_id);
             $thongbao = 'Xóa dữ liệu thành công';
             header("location: index.php?act=blogs&thongbao=$thongbao");
