@@ -14,6 +14,11 @@ include "../dao/tags.php";
 include "../dao/product_detail.php";
 include "../dao/colors.php";
 include "../dao/sizes.php";
+include "../dao/blogs.php";
+include "../dao/reviews.php";
+include "../dao/comments.php";
+include "../dao/product_img.php";
+include "../dao/contact.php";
 $products = products_select_all();
 extract($products);
 $listcate = category_select_all();
@@ -24,8 +29,12 @@ $sizes = size_select_all();
 extract($sizes);
 $colors = color_select_all();
 extract($colors);
-$users=user_select_all();
+$users = user_select_all();
 extract($users);
+$blogs = blog_select_all();
+extract($blogs);
+$contacts = contact_select_all();
+extract($contacts);
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
@@ -296,6 +305,7 @@ if (isset($_GET['act'])) {
                     $thongbao = "Thêm thành công";
                     header("location: index.php?act=listcategory&thongbao=$thongbao");
                 } else {
+                    $cate_img = $_POST['cate_img'];
                     include "categories/add.php";
                 }
             } else {
@@ -355,6 +365,223 @@ if (isset($_GET['act'])) {
             break;
         case "users":
             include "users/list.php";
+            break;
+        case "add_blog":
+            if (isset($_POST['btn_insert']) && ($_POST['btn_insert'])) {
+                extract($_SESSION["user"]);
+                $blog_title = $_POST["blog_title"];
+                $blog_content = $_POST["blog_content"];
+                $file = $_FILES['blog_img'];
+                $blog_img = $file['name'];
+                $blog_post_date = $_POST["blog_post_date"];
+                if ($blog_title == "") {
+                    $errors['blog_title'] = "Tiêu không được để trống";
+                }
+                if ($blog_content == "") {
+                    $errors['blog_content'] = "Nội dung không được trống";
+                }
+                if ($blog_post_date == "") {
+                    $errors['blog_post_date'] = "Ngày đăng không hợp lệ";
+                }
+                if ($file['size'] <= 0) {
+                    $errors['blog_img'] = "Bạn cần nhập ảnh";
+                } else {
+                    $img = ['jpg', 'png', 'gif'];
+                    //Lấy phần mở rộng của file
+                    $ext = pathinfo($blog_img, PATHINFO_EXTENSION);
+                    //Kiểm tra xem $ext có trong $img không
+                    if (!in_array($ext, $img)) {
+                        $errors['blog_img'] = "File không phải là ảnh";
+                    }
+                }
+                if (!isset($errors)) {
+                    blog_insert($blog_title, $blog_content, $blog_img, $blog_post_date, $user_id);
+                    move_uploaded_file($file['tmp_name'], '../upload/' . $blog_img);
+                    $thongbao = "Thêm thành công";
+                    header("location: index.php?act=blogs&thongbao=$thongbao");
+                } else {
+                    $file = $_FILES['blog_img'];
+                    $blog_img = $file['name'];
+                    include "blogs/add.php";
+                }
+            } else {
+
+                include "blogs/add.php";
+            }
+            break;
+        case "blogs":
+            include "blogs/list.php";
+            break;
+        case "updateblog":
+            if (isset($_POST['updateblog']) && ($_POST['updateblog'])) {
+                extract($_SESSION["user"]);
+                $blog_title = $_POST["blog_title"];
+                $blog_content = $_POST["blog_content"];
+                $file = $_FILES['blog_img'];
+                $blog_img = $file['name'];
+                $blog_id = $_POST['blog_id'];
+                $blog_post_date = $_POST["blog_post_date"];
+                if ($blog_title == "") {
+                    $errors['blog_title'] = "Tiêu không được để trống";
+                }
+                if ($blog_content == "") {
+                    $errors['blog_content'] = "Nội dung không được trống";
+                }
+                if ($blog_post_date == "") {
+                    $errors['blog_post_date'] = "Ngày đăng không hợp lệ";
+                }
+                if ($file['size'] > 0) {
+                    $img = ['jpg', 'png', 'gif'];
+                    //Lấy phần mở rộng của file
+                    $ext = pathinfo($blog_img, PATHINFO_EXTENSION);
+                    //Kiểm tra xem $ext có trong $img không
+                    if (!in_array($ext, $img)) {
+                        $errors['blog_img'] = "File không phải là ảnh";
+                    }
+                } else {
+                    $blog_img = $_POST['blog_img'];
+                }
+                if (!isset($errors)) {
+                    blog_update($blog_id, $blog_title, $blog_content, $blog_img, $blog_post_date, $user_id);
+                    move_uploaded_file($file['tmp_name'], '../upload/' . $blog_img);
+                    $thongbao = "Cập nhật thành công";
+                    header("location: index.php?act=blogs&thongbao=$thongbao");
+                } else {
+                    $blog_img = $_POST['blog_img'];
+                    include "blogs/update.php";
+                }
+            } else {
+                $blog_id = $_GET['blog_id'];
+                $blog = blog_select_by_id($blog_id);
+                extract($blog);
+                include 'blogs/update.php';
+            }
+            break;
+        case "delblog":
+            $blog_id = $_GET['blog_id'];
+            blog_delete($blog_id);
+            $thongbao = 'Xóa dữ liệu thành công';
+            header("location: index.php?act=blogs&thongbao=$thongbao");
+            break;
+        case "reviewspro":
+            include "reviews/product.php";
+            break;
+        case "reviews":
+            $product_id = $_GET['product_id'];
+            $reviews = review_select_by_product($product_id);
+            include "reviews/reviews.php";
+            break;
+        case "delreview":
+            $review_id = $_GET['review_id'];
+            $product_id = $_GET['product_id'];
+            review_delete($review_id);
+            $thongbao = 'Xóa dữ liệu thành công';
+            header("location: index.php?act=reviews&product_id=$product_id&thongbao=$thongbao");
+            break;
+        case "commentsblogs":
+            include "comments/blog.php";
+            break;
+        case "comments":
+            $blog_id = $_GET['blog_id'];
+            $comments = comment_select_by_product($blog_id);
+            include "comments/list.php";
+            break;
+        case "delcomment":
+            $comment_id = $_GET['comment_id'];
+            $blog_id = $_GET['blog_id'];
+            comment_delete($comment_id);
+            $thongbao = 'Xóa dữ liệu thành công';
+            header("location: index.php?act=comments&blog_id=$blog_id&thongbao=$thongbao");
+            break;
+        case "addimage_product":
+            if (isset($_POST['btn_insert']) && ($_POST['btn_insert'])) {
+                $file = $_FILES['product_img'];
+                $product_img = $file['name'];
+                $product_id = $_GET['product_id'];
+
+                if ($file['size'] <= 0) {
+                    $errors['product_img'] = "Bạn cần nhập ảnh";
+                } else {
+                    $img = ['jpg', 'png', 'gif'];
+                    //Lấy phần mở rộng của file
+                    $ext = pathinfo($product_img, PATHINFO_EXTENSION);
+                    //Kiểm tra xem $ext có trong $img không
+                    if (!in_array($ext, $img)) {
+                        $errors['product_img'] = "File không phải là ảnh";
+                    }
+                }
+                if (!isset($errors)) {
+                    productimage_insert($product_img, $product_id);
+                    move_uploaded_file($file['tmp_name'], '../upload/' . $product_img);
+                    $thongbao = " Thêm thành công";
+                    header("location: index.php?act=listimage_product&product_id=$product_id&thongbao=$thongbao");
+                } else {
+                    $product_id = $_GET['product_id'];
+                    include 'products/product_image/add.php';
+                }
+            } else {
+                $product_id = $_GET['product_id'];
+                include 'products/product_image/add.php';
+            }
+            break;
+
+        case "listimage_product":
+            $product_id = $_GET['product_id'];
+            $listimgs = productimage_select_by_pro($product_id);
+            include 'products/product_image/list.php';
+            break;
+        case "delimg_product":
+            $product_img_id = $_GET['product_img_id'];
+            $product_id = $_GET['product_id'];
+            productimage_delete($product_img_id);
+            $thongbao = 'Xóa dữ liệu thành công';
+            header("location: index.php?act=listimage_product&product_id=$product_id&thongbao=$thongbao");
+            break;
+
+        case "list_product":
+            include 'products/product_image/list_product.php';
+            break;
+
+
+        case "updateimg_product":
+            if (isset($_POST['updateimg_product']) && ($_POST['updateimg_product'])) {
+                $file = $_FILES['product_img'];
+                $product_img = $file['name'];
+                $product_id = $_GET['product_id'];
+
+                if ($file['size'] > 0) {
+                    $img = ['jpg', 'png', 'gif'];
+                    //lấy tên ảnh mới
+                    $image = $file['name'];
+                    //Lấy phần mở rộng của file
+                    $ext = pathinfo($image, PATHINFO_EXTENSION);
+                    //Kiểm tra xem $ext có trong $img không
+                    if (!in_array($ext, $img)) {
+                        $errors['product_img'] = "File không phải là ảnh";
+                    }
+                }
+
+                if (!isset($errors)) {
+                    productimage_update($product_img_id, $product_img, $product_id);
+                    move_uploaded_file($file['tmp_name'], '../upload/' . $product_img);
+                    $thongbao = "Cập nhật thành công";
+                    header("location: index.php?act=listimage_product&product_id=$product_id&thongbao=$thongbao");
+                } else {
+                    $file = $_FILES['product_img'];
+                    $cate_img = $file['name'];
+                    $product_id = $_GET['product_id'];
+                    include 'products/product_image/update.php';
+                }
+            } else {
+                $product_id = $_GET['product_id'];
+                $product_img_id = $_GET['product_img_id'];
+                $listimg = productimage_select_by_id($product_img_id);
+                extract($listimg);
+                include 'products/product_image/update.php';
+            }
+            break;
+            case "contact":
+                include "contact/list.php";
             break;
         default:
             include "home.php";

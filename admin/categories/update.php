@@ -1,5 +1,4 @@
 <?php
-echo '<h1>'.$cate_img.'</h1>';
  $hinhpath = "../upload/" . $cate_img;
  if (!is_file($hinhpath)) {
      $cate_img = "no photo";

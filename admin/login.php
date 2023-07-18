@@ -12,30 +12,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $user_password = $_POST['user_password'];
   $check_user = check_user($user_id, $user_password);
   // chuan bi
-  extract($check_user);
-  if (is_array($check_user) && $user_roll==1) {
-    $_SESSION['user'] = $check_user;
-    $thongbao = "Đăng nhập thành công";
-    if (isset($thongbao)) {
-      echo '<script type="text/javascript">
+  if (is_array($check_user)) {
+    extract($check_user);
+    if ($user_roll == 1) {
+
+      $_SESSION['user'] = $check_user;
+      $thongbao = "Đăng nhập thành công";
+      if (isset($thongbao)) {
+        echo '<script type="text/javascript">
 
 window.onload = function () { alert("' . $thongbao . '"); }
       </script>';
+      }
+      header("location: index.php");
+    } else {
+      $thongbao = "Vai trò không đúng!";
+      
     }
-    header("location: index.php");
   } else {
-    
     $thongbao = "Tài khoản không tồn tại";
-    if (isset($thongbao)) {
-      echo '<script type="text/javascript">
-
-window.onload = function () { alert("' . $thongbao . '"); }
-
-      </script>';
-    }
+    
   }
 }
+if (isset($thongbao)) {
+  echo '<script type="text/javascript">
 
+window.onload = function () { alert("' . $thongbao . '"); }
+</script>';
+}
 ?>
 <!DOCTYPE html>
 <html>

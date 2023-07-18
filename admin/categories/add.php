@@ -10,7 +10,8 @@
         
         <div class=" my-3">
             <label for="">Category Image</label> <br>
-            <input type="file" name="cate_img" value="<?= $cate_img ?? '' ?>">
+            <input type="file" name="cate_img" >
+            <input type="hidden" name="cate_img" value="<?= $cate_img ?? '' ?>">
             <span style="color:red">
                     <?= $errors['cate_img'] ?? '' ?>
                 </span>

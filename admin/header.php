@@ -119,7 +119,7 @@
                             </a>
                             <!-- Menu đa cấp -->
                             <ul class="menu__con">
-                                
+
                                 <li class="menu__items">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=colors_btn_add" aria-expanded="false">
                                         <span class="hide-menu">Color</span>
@@ -140,6 +140,11 @@
                                         <span class="hide-menu">Product</span>
                                     </a>
                                 </li>
+                                <li class="menu__items">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=list_product" aria-expanded="false">
+                                <span class="hide-menu">Images</span>
+                            </a>
+                        </li>
                             </ul>
                             <!-- end -->
                         </li>
@@ -150,11 +155,12 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=reviewspro" aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Basic Table</span>
+                                <span class="hide-menu">Reviews</span>
                             </a>
                         </li>
+                        
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=addcategory" aria-expanded="false">
                                 <i class="fa fa-font" aria-hidden="true"></i>
@@ -162,21 +168,22 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="map-google.html" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=add_blog" aria-expanded="false">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
-                                <span class="hide-menu">Google Map</span>
+                                <span class="hide-menu">Blogs</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="blank.html" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=commentsblogs" aria-expanded="false">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
-                                <span class="hide-menu">Blank Page</span>
+                                <span class="hide-menu">Comments</span>
                             </a>
                         </li>
-
-                        <li class="text-center p-20 upgrade-btn">
-                            <a href="https://www.wrappixel.com/templates/ampleadmin/" class="btn d-grid btn-danger text-white" target="_blank">
-                                Upgrade to Pro</a>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=contact" aria-expanded="false">
+                                <i class="fa fa-columns" aria-hidden="true"></i>
+                                <span class="hide-menu">Contact</span>
+                            </a>
                         </li>
                     </ul>
 
