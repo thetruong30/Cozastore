@@ -112,6 +112,13 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <!-- User Profile-->
+                        
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=listcategory" aria-expanded="false">
+                                <i class="fa fa-font" aria-hidden="true"></i>
+                                <span class="hide-menu">Category</span>
+                            </a>
+                        </li>
                         <li class="sidebar-item pt-2 menu__cha">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
@@ -121,22 +128,22 @@
                             <ul class="menu__con">
 
                                 <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=colors_btn_add" aria-expanded="false">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=color_list" aria-expanded="false">
                                         <span class="hide-menu">Color</span>
                                     </a>
                                 </li>
                                 <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=sizes_btn_add" aria-expanded="false">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=sizes_btn_list" aria-expanded="false">
                                         <span class="hide-menu">Size</span>
                                     </a>
                                 </li>
                                 <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=tags_btn_add" aria-expanded="false">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=tags_btn_list" aria-expanded="false">
                                         <span class="hide-menu">Tag</span>
                                     </a>
                                 </li>
                                 <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=addproduct" aria-expanded="false">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=products" aria-expanded="false">
                                         <span class="hide-menu">Product</span>
                                     </a>
                                 </li>
@@ -149,26 +156,19 @@
                             <!-- end -->
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=reviewspro" aria-expanded="false">
+                                <i class="fa fa-table" aria-hidden="true"></i>
+                                <span class="hide-menu">Reviews</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=users" aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span class="hide-menu">Users</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=reviewspro" aria-expanded="false">
-                                <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Reviews</span>
-                            </a>
-                        </li>
-                        
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=addcategory" aria-expanded="false">
-                                <i class="fa fa-font" aria-hidden="true"></i>
-                                <span class="hide-menu">Category</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=add_blog" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=blogs" aria-expanded="false">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
                                 <span class="hide-menu">Blogs</span>
                             </a>
