@@ -34,3 +34,8 @@ function comment_select_by_product($blog_id)
     $sql = 'select * from comments where blog_id=?';
     return pdo_query($sql, $blog_id);
 }
+function comment_exist($blog_id)
+{
+    $sql = "SELECT count(*) FROM comments WHERE blog_id=?";
+    return pdo_query_value($sql, $blog_id) > 0;
+}

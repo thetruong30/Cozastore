@@ -1,20 +1,29 @@
 <?php
+session_start();
 include 'header.php';
 require_once '../dao/categories.php';
 require_once '../dao/products.php';
-
+require_once '../dao/blogs.php';
+require_once '../dao/comments.php';
 $categories = category_home();
 // $products = show_products_home();
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
-
     switch ($act) {
         case 'home':
             $products = show_products_home();
             include 'trang-chu/home.php';
             break;
         case 'blog':
+            $blogs = blog_select_all();
+            extract($blogs);
             include 'blog/blog.php';
+            break;
+        case 'blog-detail':
+            $blog_id = $_GET['blog_id'];
+            $blog = blog_select_by_id($blog_id);
+            extract($blog);
+            include 'blog/blog-detail.php';
             break;
         case 'products':
             // Lấy tổng số sản phẩm
@@ -32,8 +41,7 @@ if (isset($_GET['act'])) {
             // Lấy tổng số trang
             $total_page = ceil($total_product / $resutls_per_page);
 
-            $products = show_products_all($page_first_resutls,$resutls_per_page);
-
+            $products = show_products_all($page_first_resutls, $resutls_per_page);
             include 'products/product.php';
             break;
         case 'product_detail':

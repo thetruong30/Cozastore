@@ -28,6 +28,7 @@
                     <th>ID</th>
                     <th>NAME</th>
                     <th>PRICE</th>
+                    <th>IMAGE</th>
                     <th>SALE</th>
                     <th>DATE</th>
                     <th>DESCRIPTION</th>
@@ -44,6 +45,12 @@
                             product_detail_insert($product_id, $color_id, $size_id);
                         }
                     }
+                    $hinhpath = "../upload/" . $product_img;
+                    if (is_file($hinhpath)) {
+                        $product_img = "<img src='" . $hinhpath . "' height='80'>";
+                    } else {
+                        $product_img = "no photo";
+                    }
                     $updatepro = "index.php?act=updatepro&product_id=" . $product_id;
                     $delpro = "index.php?act=delpro&product_id=" . $product_id;
                     echo '
@@ -52,6 +59,7 @@
                          <td>' . $product_id . '</td>
                          <td>' . $product_name . '</td>
                          <td>' . $product_price . '</td>
+                         <td>' . $product_img . '</td>
                          <td>' . $product_sale . '%</td>
                          <td>' . $product_posting_date . '</td>
                          <td>' . $product_desciption . '</td>

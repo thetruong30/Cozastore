@@ -1,6 +1,6 @@
 
 <div class="container">
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="">
             <label for="">Name</label>
             <input type="text" name="product_name" value="<?= $product_name ?? '' ?>">
@@ -13,6 +13,13 @@
             <input type="number" name="product_price" value="<?= $product_price ?? '' ?>">
             <span style="color:red">
                     <?= $errors['product_price'] ?? '' ?>
+                </span>
+        </div>
+        <div class="">
+            <label for="">Image</label>
+            <input type="file" name="product_img" value="<?= $product_img ?? '' ?>">
+            <span style="color:red">
+                    <?= $errors['product_img'] ?? '' ?>
                 </span>
         </div>
         <div class="">
