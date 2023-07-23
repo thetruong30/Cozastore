@@ -1,4 +1,5 @@
 <!-- Product -->
+
 <div class="bg0 m-t-23 p-b-140">
 	<div class="container">
 		<div class="flex-w flex-sb-m p-b-52">
@@ -41,7 +42,7 @@
 			<div class="dis-none panel-search w-full p-t-10 p-b-15">
 				<form action="index.php?act=search_keyword" method="post">
 					<div class="bor8 dis-flex p-l-15">
-						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+						<button type="submit" class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 							<i class="zmdi zmdi-search"></i>
 						</button>
 
@@ -66,9 +67,9 @@
 					<!-- Block2 -->
 					<a href="index.php?act=product_detail&pro_id=<?= $pro['product_id'] ?? '' ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 						<div class="block2">
-							<?php $pro_img = productimage_select_by_pro_limit1($pro['product_id']) ?>
+							
 							<div class="block2-pic hov-img0" data-label="New">
-								<img src="../upload/<?= $pro_img['product_img'] ?? 'errors.jpg' ?>" style="height: 334px" alt="IMG-PRODUCT">
+								<img src="../upload/<?= $pro['product_img'] ?? 'errors.jpg' ?>" style="height: 334px" alt="IMG-PRODUCT">
 
 							</div>
 

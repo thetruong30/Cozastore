@@ -1,6 +1,12 @@
 
+<?php
+ $hinhpath = "../upload/" . $product_img;
+ if (!is_file($hinhpath)) {
+     $product_img = "no photo";
+ }
+?>
 <div class="container">
-    <form action="index.php?act=updateproduct" method="post">
+    <form action="index.php?act=updateproduct" method="post" enctype="multipart/form-data">
         <div class="">
             <label for="">Name</label>
             <input type="text" name="product_name" value="<?= $product_name ?? '' ?>">
@@ -15,6 +21,13 @@
                     <?= $errors['product_price'] ?? '' ?>
                 </span>
         </div>
+        <label for="">Image</label> <br>
+            <input type="file" name="product_img">
+            <input type="hidden" name="product_img" value="<?= $product_img ?? '' ?>">
+            <img src="<?= $hinhpath ?? '' ?>" height='80'>
+            <span style="color:red">
+                <?= $errors['product_img'] ?? '' ?>
+            </span>
         <div class="">
             <label for="">Sale(%)</label>
             <input type="number" name="product_sale" value="<?= $product_sale ?? '' ?>" min="1" max="100">

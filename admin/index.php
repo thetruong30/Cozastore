@@ -43,6 +43,8 @@ if (isset($_GET['act'])) {
             if (isset($_POST['btn_insert']) && ($_POST['btn_insert'])) {
                 $product_name = $_POST["product_name"];
                 $product_price = $_POST["product_price"];
+                $file = $_FILES['product_img'];
+                $product_img = $file['name'];
                 $product_sale = $_POST["product_sale"];
                 $product_posting_date = $_POST["product_posting_date"];
                 $product_desciption = $_POST["product_desciption"];
@@ -63,11 +65,25 @@ if (isset($_GET['act'])) {
                 if ($product_desciption == "") {
                     $errors['product_desciption'] = "Mô tả không hợp lệ";
                 }
+                if ($file['size'] <= 0) {
+                    $errors['product_img'] = "Bạn cần nhập ảnh";
+                } else {
+                    $img = ['jpg', 'png', 'gif'];
+                    //Lấy phần mở rộng của file
+                    $ext = pathinfo($product_img, PATHINFO_EXTENSION);
+                    //Kiểm tra xem $ext có trong $img không
+                    if (!in_array($ext, $img)) {
+                        $errors['blog_img'] = "File không phải là ảnh";
+                    }
+                }
                 if (!isset($errors)) {
-                    products_insert($product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption);
+                    products_insert($product_name, $product_price,$product_img, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption);
+                    move_uploaded_file($file['tmp_name'], '../upload/' . $product_img);
                     $thongbao = "Thêm thành công";
                     header("location: index.php?act=products&thongbao=$thongbao");
                 } else {
+                    $file = $_FILES['product_img'];
+                    $product_img = $file['name'];
                     include "products/product/add.php";
                 }
             } else {
@@ -104,6 +120,8 @@ if (isset($_GET['act'])) {
             if (isset($_POST['update']) && ($_POST['update'])) {
                 $product_name = $_POST["product_name"];
                 $product_price = $_POST["product_price"];
+                $file = $_FILES['product_img'];
+                $product_img = $file['name'];
                 $product_sale = $_POST["product_sale"];
                 $product_posting_date = $_POST["product_posting_date"];
                 $product_desciption = $_POST["product_desciption"];
@@ -125,11 +143,24 @@ if (isset($_GET['act'])) {
                 if ($product_desciption == "") {
                     $errors['product_desciption'] = "Mô tả không hợp lệ";
                 }
+                if ($file['size'] > 0) {
+                    $img = ['jpg', 'png', 'gif'];
+                    //Lấy phần mở rộng của file
+                    $ext = pathinfo($product_img, PATHINFO_EXTENSION);
+                    //Kiểm tra xem $ext có trong $img không
+                    if (!in_array($ext, $img)) {
+                        $errors['product_img'] = "File không phải là ảnh";
+                    }
+                } else {
+                    $product_img = $_POST['product_img'];
+                }
                 if (!isset($errors)) {
-                    products_update($product_id, $product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption);
+                    products_update($product_id, $product_name, $product_price, $product_img, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption);
+                    move_uploaded_file($file['tmp_name'], '../upload/' . $product_img);
                     $thongbao = "Cập nhật thành công";
                     header("location: index.php?act=products&thongbao=$thongbao");
                 } else {
+                    $product_img = $_POST['product_img'];
                     include "products/product/update.php";
                 }
             }

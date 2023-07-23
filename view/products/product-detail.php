@@ -1,5 +1,3 @@
-1
-
 <!-- breadcrumb -->
 <div class="container">
 	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
@@ -72,12 +70,12 @@
 
 							<div class="size-204 respon6-next">
 								<div class="rs1-select2 bor8 bg0">
-									<select class="js-select2" name="time">
+									<select class="js-select2" name="size">
 										<option>Choose an option</option>
-										<option>Size S</option>
-										<option>Size M</option>
-										<option>Size L</option>
-										<option>Size XL</option>
+										<?php foreach ($sizes as $size) : ?>
+											<option value="<?= $size['size_id'] ?>">Size <?= $size['size_name'] ?></option>
+										<?php endforeach ?>
+
 									</select>
 									<div class="dropDownSelect2"></div>
 								</div>
@@ -93,10 +91,11 @@
 								<div class="rs1-select2 bor8 bg0">
 									<select class="js-select2" name="time">
 										<option>Choose an option</option>
-										<option>Red</option>
-										<option>Blue</option>
-										<option>White</option>
-										<option>Grey</option>
+										<?php foreach ($colors as $color) : ?>
+											<option value="<?= $color['color_id'] ?>"><?= $color['color_name'] ?></option>
+										<?php endforeach ?>
+										
+
 									</select>
 									<div class="dropDownSelect2"></div>
 								</div>

@@ -99,9 +99,8 @@
 					<!-- Block2 -->
 					<a href="index.php?act=product_detail&pro_id=<?= $pro['product_id'] ?? '' ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 						<div class="block2">
-							<?php $pro_img = productimage_select_by_pro_limit1($pro['product_id']) ?>
 							<div class="block2-pic hov-img0" data-label="New">
-								<img src="../upload/<?= $pro_img['product_img'] ?? 'errors.jpg' ?>" style="height: 334px" alt="IMG-PRODUCT">
+								<img src="../upload/<?= $pro['product_img'] ?? 'errors.jpg' ?>" style="height: 334px" alt="IMG-PRODUCT">
 
 							</div>
 

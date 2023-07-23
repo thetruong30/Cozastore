@@ -1,16 +1,16 @@
 <?php
 require_once 'pdo.php';
 
-function products_insert($product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption)
+function products_insert($product_name, $product_price, $product_img, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption)
 {
-    $sql = "INSERT INTO products(product_name, product_price, product_sale, product_posting_date, tag_id, cate_id, product_desciption) VALUES (?,?,?,?,?,?,?)";
-    pdo_execute($sql, $product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption);
+    $sql = "INSERT INTO products(product_name, product_price,product_img, product_sale, product_posting_date, tag_id, cate_id, product_desciption) VALUES (?,?,?,?,?,?,?,?)";
+    pdo_execute($sql, $product_name, $product_price, $product_img, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption);
 }
 
-function products_update($product_id, $product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption)
+function products_update($product_id, $product_name, $product_price, $product_img, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption)
 {
-    $sql = "UPDATE products SET product_name=?,product_price=?,product_sale=?,product_posting_date=?,tag_id=?,cate_id=?,product_desciption=? WHERE product_id=?";
-    pdo_execute($sql, $product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption, $product_id);
+    $sql = "UPDATE products SET product_name=?,product_price=?,product_img=?,product_sale=?,product_posting_date=?,tag_id=?,cate_id=?,product_desciption=? WHERE product_id=?";
+    pdo_execute($sql, $product_name, $product_price, $product_img, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption,$product_id);
 }
 
 function products_delete($product_id)
@@ -66,11 +66,14 @@ function products_select_keyword($keyword)
 function show_products_home()
 {
     $sql = "SELECT * FROM products ORDER BY product_id LIMIT 8";
+
     return pdo_query($sql);
 }
 function show_products_all($first, $second)
 {
+
     $sql = "SELECT * FROM products ORDER BY product_id DESC LIMIT $first,$second";
+
     return pdo_query($sql);
 }
 function product_img_select_all_by_id($pro_id)
@@ -78,6 +81,7 @@ function product_img_select_all_by_id($pro_id)
     $sql = "SELECT * FROM product_img WHERE product_id=?";
     return pdo_query($sql, $pro_id);
 }
+
 function show_products_all_cate($cate_id, $first, $second)
 {
     $sql = "SELECT * FROM products WHERE cate_id=? ORDER BY product_id LIMIT $first,$second";
@@ -89,3 +93,5 @@ function products_select_by_tag($tag_id)
     $sql = "SELECT * FROM products WHERE tag_id=?";
     return pdo_query($sql, $tag_id);
 }
+
+
