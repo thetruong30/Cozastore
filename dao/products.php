@@ -7,10 +7,10 @@ function products_insert($product_name, $product_price, $product_sale, $product_
     pdo_execute($sql, $product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption);
 }
 
-function products_update($product_id,$product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption)
+function products_update($product_id, $product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption)
 {
     $sql = "UPDATE products SET product_name=?,product_price=?,product_sale=?,product_posting_date=?,tag_id=?,cate_id=?,product_desciption=? WHERE product_id=?";
-    pdo_execute($sql,$product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption, $product_id);
+    pdo_execute($sql, $product_name, $product_price, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption, $product_id);
 }
 
 function products_delete($product_id)
@@ -27,14 +27,7 @@ function products_delete($product_id)
 
 function products_select_all()
 {
-    $sql = "SELECT * FROM products";
-    // // if($kyw!=""){
-    // //     $sql.=" and product_name like '%".$kyw."%'";
-    // // }
-    // // if($ma_loai>0){
-    // //     $sql.=" and cate_id ='".$cate_id."'";
-    // // }
-    // $sql.=" order by product_id desc";
+    $sql = "SELECT * FROM products ORDER BY product_id DESC";
     return pdo_query($sql);
 }
 
@@ -55,6 +48,7 @@ function products_select_by_cate($cate_id)
     $sql = "SELECT * FROM products WHERE cate_id = ?";
     return pdo_query($sql, $cate_id);
 }
+
 function products_select_cung_loai($cate_id, $product_id)
 {
     $sql = "SELECT * FROM products WHERE cate_id = ? and product_id <> ?";
@@ -65,24 +59,33 @@ function products_select_keyword($keyword)
 {
     $sql = "SELECT * FROM products hh "
         . " JOIN categories lo ON lo.cate_id=hh.cate_id "
-        . " WHERE product_name LIKE ? OR product_name LIKE ?";
+        . " WHERE product_name LIKE ? OR cate_name LIKE ?";
     return pdo_query($sql, '%' . $keyword . '%', '%' . $keyword . '%');
 }
 
-
-function show_products_home(){
-    $sql = 'SELECT * FROM products INNER JOIN 
-    product_img ON products.product_id=product_img.product_id 
-    INNER JOIN categories ON products.cate_id=categories.cate_id ORDER BY products.product_id DESC LIMIT 8';
+function show_products_home()
+{
+    $sql = "SELECT * FROM products ORDER BY product_id LIMIT 8";
     return pdo_query($sql);
 }
-function show_products_all($first,$second){
-    $sql = "SELECT * FROM product_img INNER JOIN 
-    products ON products.product_id=product_img.product_id 
-    INNER JOIN categories ON products.cate_id=categories.cate_id ORDER BY products.product_id DESC LIMIT $first,$second";
+function show_products_all($first, $second)
+{
+    $sql = "SELECT * FROM products ORDER BY product_id DESC LIMIT $first,$second";
     return pdo_query($sql);
 }
-function product_img_select_all_by_id($pro_id){
+function product_img_select_all_by_id($pro_id)
+{
     $sql = "SELECT * FROM product_img WHERE product_id=?";
-    return pdo_query($sql,$pro_id);
+    return pdo_query($sql, $pro_id);
+}
+function show_products_all_cate($cate_id, $first, $second)
+{
+    $sql = "SELECT * FROM products WHERE cate_id=? ORDER BY product_id LIMIT $first,$second";
+    return pdo_query($sql, $cate_id);
+}
+
+function products_select_by_tag($tag_id)
+{
+    $sql = "SELECT * FROM products WHERE tag_id=?";
+    return pdo_query($sql, $tag_id);
 }

@@ -10,7 +10,7 @@
 				<ul>
 					<?php foreach($categories as $cate) :?>
 					<li class="p-b-10">
-						<a href="index.php?act=products&cate_id=<?= $cate['cate_id'] ?>" class="stext-107 cl7 hov-cl1 trans-04">
+						<a href="index.php?act=products_cate&cate_id=<?= $cate['cate_id'] ?>" class="stext-107 cl7 hov-cl1 trans-04">
 						<?= $cate['cate_name'] ?>
 						</a>
 					</li>

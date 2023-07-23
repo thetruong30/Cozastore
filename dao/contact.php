@@ -3,7 +3,7 @@ require_once 'pdo.php';
 
 function contact_create($contact_email,$contact_content)
 {
-    $sql = 'insert into contact(contact_email, contact_content) values(?,?)';
+    $sql = 'insert into contact(contact_email,contact_content) values(?,?)';
     pdo_execute($sql, $contact_email,$contact_content);
 }
 

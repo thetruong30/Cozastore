@@ -77,12 +77,12 @@
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li>
+							<li class="active-menu">
 								<a href="index.php?act=home">Home</a>
 								
 							</li>
 
-							<li class="active-menu">
+							<li>
 								<a href="index.php?act=products">Shop</a>
 							</li>
 
@@ -221,7 +221,7 @@
 					<img src="images/icons/icon-close2.png" alt="CLOSE">
 				</button>
 
-				<form class="wrap-search-header flex-w p-l-15">
+				<form action="index.php?act=search_keyword" class="wrap-search-header flex-w p-l-15" method="post">
 					<button class="flex-c-m trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
