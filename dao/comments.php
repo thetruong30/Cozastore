@@ -12,7 +12,11 @@ function comment_delete($comment_id)
     $sql = 'delete from comments where comment_id=?';
     pdo_execute($sql, $comment_id);
 }
-
+function comment_delete_blog($blog_id)
+{
+    $sql = 'delete from comments where blog_id=?';
+    pdo_execute($sql, $blog_id);
+}
 
 function comment_select_all()
 {

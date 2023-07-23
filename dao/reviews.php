@@ -15,6 +15,11 @@ function review_delete($review_id)
     $sql = 'delete from reviews where review_id=?';
     pdo_execute($sql, $review_id);
 }
+function review_delete_product($product_id)
+{
+    $sql = 'delete from reviews where product_id=?';
+    pdo_execute($sql, $product_id);
+}
 
 // hiển thị d/sách size
 function review_select_all()
