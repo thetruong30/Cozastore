@@ -581,8 +581,8 @@ if (isset($_GET['act'])) {
             if (isset($_POST['updateimg_product']) && ($_POST['updateimg_product'])) {
                 $file = $_FILES['product_img'];
                 $product_img = $file['name'];
+                $product_img_id = $_GET['product_img_id'];
                 $product_id = $_GET['product_id'];
-
                 if ($file['size'] > 0) {
                     $img = ['jpg', 'png', 'gif'];
                     //lấy tên ảnh mới
@@ -594,15 +594,14 @@ if (isset($_GET['act'])) {
                         $errors['product_img'] = "File không phải là ảnh";
                     }
                 }
-
                 if (!isset($errors)) {
-                    productimage_update($product_img_id, $product_img, $product_id);
+                    productimage_update($product_img_id,$product_img,$product_id );
                     move_uploaded_file($file['tmp_name'], '../upload/' . $product_img);
                     $thongbao = "Cập nhật thành công";
                     header("location: index.php?act=listimage_product&product_id=$product_id&thongbao=$thongbao");
                 } else {
                     $file = $_FILES['product_img'];
-                    $cate_img = $file['name'];
+                    $product_img = $file['name'];
                     $product_id = $_GET['product_id'];
                     include 'products/product_image/update.php';
                 }

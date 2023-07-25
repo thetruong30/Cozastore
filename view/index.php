@@ -1,5 +1,6 @@
 <?php
 ob_start();
+session_start();
 include 'header.php';
 require_once '../dao/categories.php';
 require_once '../dao/products.php';
@@ -12,6 +13,7 @@ require_once '../dao/users.php';
 require_once '../dao/blogs.php';
 require_once '../dao/sizes.php';
 require_once '../dao/colors.php';
+require_once '../dao/comments.php';
 $categories = category_home();
 // $products = show_products_home();
 if (isset($_GET['act'])) {

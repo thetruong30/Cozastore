@@ -10,7 +10,7 @@ function productimage_insert($product_img,$product_id)
 function productimage_update($product_img_id,$product_img,$product_id )
 {
     $sql = "UPDATE product_img SET product_img=?, product_id=? WHERE product_img_id=?";
-    pdo_execute($sql, $product_img_id, $product_img, $product_id); // đặt sai vị trí giá trị biến truyền vào
+    pdo_execute($sql ,$product_img,$product_id,$product_img_id); // đặt sai vị trí giá trị biến truyền vào
 }
 
 function productimage_delete ($product_img_id)
