@@ -231,21 +231,22 @@ if (isset($_GET['act'])) {
             break;
         case 'your_review':
             if (!isset($_SESSION['user_kh'])) {
-                header("location: ");
+                header("location: user/index.php");
                 die;
             }
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $content = $_POST['review'];
-                $product_id = $_POST['product_id'];
-                $user_id = $_SESSION['user_kh'];
+                $product_id = $_POST['product_id']; 
+                extract($_SESSION['user_kh']);
+
 
                 if (strlen($content) == 0) {
-                    $err = 'Không được bỏ trống.';
+                    $err['cmt'] = 'Không được bỏ trống.';
                 }
 
                 if (!isset($err)) {
-                    review_create($content, $product_id, $user_id);
+                    review_create($content,$product_id,$user_id);
                     header("location: index.php?act=product_detail&pro_id=$product_id&thongbao=Đánh giá của bạn đã được gửi đến quản trị viên");
                     die;
                 } else {

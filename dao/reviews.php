@@ -1,6 +1,6 @@
 <?php
 require_once 'pdo.php';
-// thêm size 
+
 function review_create($review_content, $product_id, $user_id)
 {
     $sql = 'insert into reviews(review_content, product_id, user_id) values(?,?,?)';

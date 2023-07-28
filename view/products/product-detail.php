@@ -245,7 +245,7 @@
 
 
 									<!-- Add review -->
-									<form action="your_review" method="post" class="w-full">
+									<form action="index.php?act=your_review" method="post" class="w-full">
 										<h5 class="mtext-108 cl2 p-b-7">
 											Add a review
 										</h5>
@@ -314,6 +314,7 @@
 		<!-- Slide2 -->
 		<div class="wrap-slick2">
 			<div class="slick2">
+				<!--  -->
 				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 					<!-- Block2 -->
 					<div class="block2">
@@ -345,6 +346,7 @@
 						</div>
 					</div>
 				</div>
+				<!--  -->
 
 				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 					<!-- Block2 -->
