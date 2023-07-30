@@ -1,7 +1,11 @@
-
 <div class="container">
-    <div class="row frmtitle">
-        <h1>BLOGS</h1>
+    <div class="row frmtitle ">
+        <div class="">
+            <h1 class="title">BLOGS</h1>
+        </div>
+    </div>
+    <div class="my-3 d-flex justify-content-end px-3 ">
+        <a href="index.php?act=add_blog"><input class="btn btn-success p-2 text-white bg-opacity-75 border border-0" type="button" value="ADD BLOGS"></a>
     </div>
     <?php
     if (isset($_GET['thongbao'])) {
@@ -17,7 +21,7 @@
         <div class="row mb10 mt frmdshanghoa text ">
             <table>
                 <tr>
-                    
+
                     <th>ID</th>
                     <th>TITLE</th>
                     <th>CONTENT</th>
@@ -38,7 +42,7 @@
                     }
                     $updateblog = "index.php?act=updateblog&blog_id=" . $blog_id;
                     $delblog = "index.php?act=delblog&blog_id=" . $blog_id;
-                    
+
 
                     echo '
                          <tr>
@@ -55,9 +59,6 @@
 
                 ?>
             </table>
-        </div>
-        <div class="row mb10 text">
-            <a href="index.php?act=add_blog"><input type="button" value="ADD"></a>
         </div>
         <script language="javascript">
             function myFunction() {

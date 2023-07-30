@@ -17,7 +17,7 @@
     <link href="css/style.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" > -->
     <link rel="stylesheet" href="css/menu.css">
-    
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -30,19 +30,20 @@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
             <div class="lds-pos"></div>
         </div>
-    </div>
+    </div> -->
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="relative" data-header-position="absolute" data-boxed-layout="full">
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
+        <div style="display: flex; justify-content: space-between; margin-top:10px">
         <header class="topbar" data-navbarbg="skin5">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <div class="navbar-header" data-logobg="skin6">
@@ -90,9 +91,9 @@
                         <li>
 
                         </li>
-                        <li class=" in">
+                        <!-- <li class=" in">
                             <a href="logout.php">Đăng xuất</a>
-                        </li>
+                        </li> -->
 
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -114,7 +115,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <!-- User Profile-->
-                        
+
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=listcategory" aria-expanded="false">
                                 <i class="fa fa-font" aria-hidden="true"></i>
@@ -122,13 +123,17 @@
                             </a>
                         </li>
                         <li class="sidebar-item pt-2 menu__cha">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=products" aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
                                 <span class="hide-menu">Products</span>
                             </a>
                             <!-- Menu đa cấp -->
                             <ul class="menu__con">
-
+                                <li class="menu__items">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=products" aria-expanded="false">
+                                        <span class="hide-menu">Product</span>
+                                    </a>
+                                </li>
                                 <li class="menu__items">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=color_list" aria-expanded="false">
                                         <span class="hide-menu">Color</span>
@@ -144,16 +149,13 @@
                                         <span class="hide-menu">Tag</span>
                                     </a>
                                 </li>
+
                                 <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=products" aria-expanded="false">
-                                        <span class="hide-menu">Product</span>
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=list_product" aria-expanded="false">
+                                        <span class="hide-menu">Images</span>
                                     </a>
                                 </li>
-                                <li class="menu__items">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=list_product" aria-expanded="false">
-                                <span class="hide-menu">Images</span>
-                            </a>
-                        </li>
+
                             </ul>
                             <!-- end -->
                         </li>
@@ -185,6 +187,12 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=contact" aria-expanded="false">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
                                 <span class="hide-menu">Contact</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="logout.php" aria-expanded="false">
+                                <i id="fa fa-camera-retro" aria-hidden="true"></i>
+                                <span class="hide-menu">Log out</span>
                             </a>
                         </li>
                     </ul>
