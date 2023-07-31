@@ -31,6 +31,12 @@ function product_detail_select_by_id($product_detail_id)
     return pdo_query_one($sql, $product_detail_id);
 }
 
+function product_detail_select_by_size_color($color_id, $size_id,$product_id)
+{
+    $sql = "SELECT * FROM product_detail WHERE color_id=? and size_id=? and product_id=?";
+    return pdo_query_one($sql, $color_id, $size_id,$product_id);
+}
+
 function product_detail_exist($product_detail_id)
 {
     $sql = "SELECT count(*) FROM product_detail WHERE product_detail_id=?";

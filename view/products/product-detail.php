@@ -46,106 +46,112 @@
 					</div>
 				</div>
 			</div>
+			
+				<div class="col-md-6 col-lg-5 p-b-30">
+					<div class="p-r-50 p-t-5 p-lr-0-lg">
+						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+							<?= $product['product_name'] ?>
+						</h4>
+						<span class="mtext-106 cl2">
+							<?= $product['product_sale'] == 0 ? $product['product_price'] : ($product['product_price'] - ($product['product_price'] * $product['product_sale'] / 100)) . '$' ?>
+						</span>
 
-			<div class="col-md-6 col-lg-5 p-b-30">
-				<div class="p-r-50 p-t-5 p-lr-0-lg">
-					<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-						<?= $product['product_name'] ?>
-					</h4>
+						<p class="stext-102 cl3 p-t-23">
+							<?= $product['product_desciption'] ?>
+						</p>
+						<form action="index.php?act=addcart" method="post">
+						<input type="hidden" name="order_detail_img" value="<?= $product['product_img'] ?>">
+						<input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+						<input type="hidden" name="product_price" value="<?= $product['product_sale'] == 0 ? $product['product_price'] : ($product['product_price'] - ($product['product_price'] * $product['product_sale'] / 100)) ?>">
+						<input type="hidden" name="product_name" value="<?= $product['product_name'] ?>">
+						<!--  -->
 
-					<span class="mtext-106 cl2">
-						<?= $product['product_sale'] == 0 ? $product['product_price'] : ($product['product_price'] - ($product['product_price'] * $product['product_sale'] / 100)) . '$' ?>
-					</span>
-
-					<p class="stext-102 cl3 p-t-23">
-						<?= $product['product_desciption'] ?>
-					</p>
-
-					<!--  -->
-					<div class="p-t-33">
-						<div class="flex-w flex-r-m p-b-10">
-							<div class="size-203 flex-c-m respon6">
-								Size
-							</div>
-
-							<div class="size-204 respon6-next">
-								<div class="rs1-select2 bor8 bg0">
-									<select class="js-select2" name="size">
-										<option>Choose an option</option>
-										<?php foreach ($sizes as $size) : ?>
-											<option value="<?= $size['size_id'] ?>">Size <?= $size['size_name'] ?></option>
-										<?php endforeach ?>
-
-									</select>
-									<div class="dropDownSelect2"></div>
+						<div class="p-t-33">
+							<div class="flex-w flex-r-m p-b-10">
+								<div class="size-203 flex-c-m respon6">
+									Size
 								</div>
-							</div>
-						</div>
 
-						<div class="flex-w flex-r-m p-b-10">
-							<div class="size-203 flex-c-m respon6">
-								Color
-							</div>
+								<div class="size-204 respon6-next">
+									<div class="rs1-select2 bor8 bg0">
+										<select class="js-select2" name="size_id">
+											<option>Choose an option</option>
+											<?php foreach ($sizes as $size) : ?>
+												<option value="<?= $size['size_id'] ?>">Size <?= $size['size_name'] ?></option>
+											<?php endforeach ?>
 
-							<div class="size-204 respon6-next">
-								<div class="rs1-select2 bor8 bg0">
-									<select class="js-select2" name="time">
-										<option>Choose an option</option>
-										<?php foreach ($colors as $color) : ?>
-											<option value="<?= $color['color_id'] ?>"><?= $color['color_name'] ?></option>
-										<?php endforeach ?>
-										
-
-									</select>
-									<div class="dropDownSelect2"></div>
-								</div>
-							</div>
-						</div>
-
-						<div class="flex-w flex-r-m p-b-10">
-							<div class="size-204 flex-w flex-m respon6-next">
-								<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-									<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-										<i class="fs-16 zmdi zmdi-minus"></i>
-									</div>
-
-									<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-									<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-										<i class="fs-16 zmdi zmdi-plus"></i>
+										</select>
+										<div class="dropDownSelect2"></div>
 									</div>
 								</div>
+							</div>
 
-								<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-									Add to cart
-								</button>
+							<div class="flex-w flex-r-m p-b-10">
+								<div class="size-203 flex-c-m respon6">
+									Color
+								</div>
+
+								<div class="size-204 respon6-next">
+									<div class="rs1-select2 bor8 bg0">
+										<select class="js-select2" name="color_id">
+											<option>Choose an option</option>
+											<?php foreach ($colors as $color) : ?>
+												<option value="<?= $color['color_id'] ?>"><?= $color['color_name'] ?></option>
+											<?php endforeach ?>
+
+
+										</select>
+										<div class="dropDownSelect2"></div>
+									</div>
+								</div>
+							</div>
+
+							<div class="flex-w flex-r-m p-b-10">
+								<div class="size-204 flex-w flex-m respon6-next">
+									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
+										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+											<i class="fs-16 zmdi zmdi-minus"></i>
+										</div>
+
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="so_luong" value="1">
+
+										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+											<i class="fs-16 zmdi zmdi-plus"></i>
+										</div>
+									</div>
+
+									<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+										Add to cart
+									</button>
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<!--  -->
-					<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-						<div class="flex-m bor9 p-r-10 m-r-11">
-							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-								<i class="zmdi zmdi-favorite"></i>
+						<!--  -->
+						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+							<div class="flex-m bor9 p-r-10 m-r-11">
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+									<i class="zmdi zmdi-favorite"></i>
+								</a>
+							</div>
+
+							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+								<i class="fa fa-facebook"></i>
+							</a>
+
+							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+								<i class="fa fa-twitter"></i>
+							</a>
+
+							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+								<i class="fa fa-google-plus"></i>
 							</a>
 						</div>
-
-						<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-							<i class="fa fa-facebook"></i>
-						</a>
-
-						<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-							<i class="fa fa-twitter"></i>
-						</a>
-
-						<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-							<i class="fa fa-google-plus"></i>
-						</a>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
+
 
 		<div class="bor10 m-t-50 p-t-43 p-b-40">
 			<!-- Tab01 -->
@@ -314,7 +320,6 @@
 		<!-- Slide2 -->
 		<div class="wrap-slick2">
 			<div class="slick2">
-				<!--  -->
 				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 					<!-- Block2 -->
 					<div class="block2">
@@ -346,7 +351,6 @@
 						</div>
 					</div>
 				</div>
-				<!--  -->
 
 				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 					<!-- Block2 -->

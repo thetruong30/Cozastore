@@ -182,6 +182,12 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=dh" aria-expanded="false">
+                                <i class="fa fa-columns" aria-hidden="true"></i>
+                                <span class="hide-menu">Orders</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=contact" aria-expanded="false">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
                                 <span class="hide-menu">Contact</span>

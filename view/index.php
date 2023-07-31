@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-include 'header.php';
+
 require_once '../dao/categories.php';
 require_once '../dao/products.php';
 require_once '../dao/product_img.php';
@@ -14,7 +14,12 @@ require_once '../dao/blogs.php';
 require_once '../dao/sizes.php';
 require_once '../dao/colors.php';
 require_once '../dao/comments.php';
+require_once '../dao/cart.php';
+require_once '../dao/product_detail.php';
+include 'header.php';
 $categories = category_home();
+$payments = pay_select_all();
+if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 // $products = show_products_home();
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
@@ -51,7 +56,7 @@ if (isset($_GET['act'])) {
             // Lấy tổng số trang
             $total_page = ceil($total_product / $resutls_per_page);
 
-            $products = show_products_all($page_first_resutls,$resutls_per_page);
+            $products = show_products_all($page_first_resutls, $resutls_per_page);
 
             include 'products/product.php';
             break;
@@ -90,12 +95,13 @@ if (isset($_GET['act'])) {
             }
             break;
         case 'cart':
+            $carts = cart_select_all();
             include 'carts/shoping-cart.php';
             break;
         case 'products_cate':
             $cate_id = $_GET['cate_id'];
             $cate_name = category_select_by_id($cate_id);
- 
+
             // Lấy tổng số sản phẩm
             $resutls = products_select_by_cate($cate_id);
             $total_product = count($resutls);
@@ -114,7 +120,7 @@ if (isset($_GET['act'])) {
 
             // Lấy tổng số trang
             $total_page = ceil($total_product / $resutls_per_page);
-            $total_kq = "Có tổng số ". $total_product ." sản phẩm liên quan đến '".$cate_name['cate_name']."'";
+            $total_kq = "Có tổng số " . $total_product . " sản phẩm liên quan đến '" . $cate_name['cate_name'] . "'";
 
             $products = show_products_all_cate($cate_id, $page_first_resutls, $resutls_per_page);
 
@@ -137,7 +143,7 @@ if (isset($_GET['act'])) {
                 }
                 $page_first_resutls = ($num_page - 1) * $resutls_per_page;
                 $total_page = ceil($total_product / $resutls_per_page);
-                $total_kq = "Có tổng số ". $total_product ." sản phẩm có giá từ '".$first." đến ".$second."'";
+                $total_kq = "Có tổng số " . $total_product . " sản phẩm có giá từ '" . $first . " đến " . $second . "'";
                 $products = filter_price_between($first, $second, $page_first_resutls, $resutls_per_page);
             } else {
                 $price = $_GET['price'];
@@ -152,7 +158,7 @@ if (isset($_GET['act'])) {
                 }
                 $page_first_resutls = ($num_page - 1) * $resutls_per_page;
                 $total_page = ceil($total_product / $resutls_per_page);
-                $total_kq = "Có tổng số ". $total_product ." sản phẩm có giá từ '".$price."'";
+                $total_kq = "Có tổng số " . $total_product . " sản phẩm có giá từ '" . $price . "'";
                 $products = filter_price($price, $page_first_resutls, $resutls_per_page);
             }
             include 'products/product.php';
@@ -171,7 +177,7 @@ if (isset($_GET['act'])) {
             }
             $page_first_resutls = ($num_page - 1) * $resutls_per_page;
             $total_page = ceil($total_product / $resutls_per_page);
-            $total_kq = "Có tổng số ". $total_product ." sản phẩm liên quan đến '".$tag['tag_name']."'";
+            $total_kq = "Có tổng số " . $total_product . " sản phẩm liên quan đến '" . $tag['tag_name'] . "'";
             $products = filter_tag($tag_id, $page_first_resutls, $resutls_per_page);
             include 'products/product.php';
             break;
@@ -220,10 +226,9 @@ if (isset($_GET['act'])) {
 
                 if (strlen($key) > 0) {
                     $products = products_select_keyword($key);
-                    $total_kq ="Có tổng số ". count($products). " từ khóa sản phẩm liên quan đến '".$key."'";
+                    $total_kq = "Có tổng số " . count($products) . " từ khóa sản phẩm liên quan đến '" . $key . "'";
                     include 'products/product.php';
-                }
-                else{
+                } else {
                     header('location: index.php?act=products');
                     die;
                 }
@@ -237,7 +242,7 @@ if (isset($_GET['act'])) {
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $content = $_POST['review'];
-                $product_id = $_POST['product_id']; 
+                $product_id = $_POST['product_id'];
                 extract($_SESSION['user_kh']);
 
 
@@ -246,7 +251,7 @@ if (isset($_GET['act'])) {
                 }
 
                 if (!isset($err)) {
-                    review_create($content,$product_id,$user_id);
+                    review_create($content, $product_id, $user_id);
                     header("location: index.php?act=product_detail&pro_id=$product_id&thongbao=Đánh giá của bạn đã được gửi đến quản trị viên");
                     die;
                 } else {
@@ -256,6 +261,111 @@ if (isset($_GET['act'])) {
                     include 'products/product-detail.php';
                 }
             }
+            break;
+        case "addcart":
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $color_id = $_POST['color_id'];
+                $size_id = $_POST['size_id'];
+                $order_detail_name = $_POST['product_name'];
+                $order_detail_img = $_POST['order_detail_img'];
+                $product_id = $_POST['product_id'];
+                $order_detail_price = $_POST['product_price'];
+                $so_luong = $_POST['so_luong'];
+                $product_detail =  product_detail_select_by_size_color($color_id, $size_id, $product_id);
+                $product_detail_id = $product_detail['product_detail_id'];
+                // $cartadd = cart_select_by_id($product_detail['product_detail_id']);
+                // if (is_array($cartadd)) {
+                //     $so_luong += $cartadd['so_luong'];
+                //     cart_edit_sl($cartadd['order_detail_id'], $so_luong);
+                // } else {
+                //     cart_insert($order_detail_name, $order_detail_price, $order_detail_img, $product_detail_id, $so_luong);
+                // }
+                $fg = 0;
+                $i = 0;
+                foreach ($_SESSION['cart'] as $item) {
+                    if ($item[0] == $product_detail_id) {
+                        $slnew = $so_luong + $item[4];
+                        $_SESSION['cart'][$i][4] = $slnew;
+                        $fg = 1;
+                        break;
+                    }
+                    $i++;
+                }
+
+                if ($fg == 0) {
+                    $item = array($product_detail_id, $order_detail_name, $order_detail_img, $order_detail_price, $so_luong);
+                    $_SESSION['cart'][] = $item;
+                }
+
+                header("location: http://localhost/cozastore/view/index.php?act=products");
+            }
+            break;
+        case "updatecart":
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $arr = $_POST['so_luong'];
+                $i = 0;
+                foreach ($arr as $ar => $a) {
+                    if (isset($i) && ($i >= 0)) {
+                        if ($a == 0) {
+                            array_splice($_SESSION['cart'], $i, 1);
+                        } else {
+                            $_SESSION['cart'][$i][4] = $a;
+                        }
+                    } else {
+                        if (isset($_SESSION['cart'])) unset($_SESSION['cart']);
+                    }
+                    $i++;
+                }
+            }
+            $carts = cart_select_all();
+            header("location: http://localhost/cozastore/view/index.php?act=cart");
+
+            break;
+        case "delcart":
+            if (isset($_GET['i']) && ($_GET['i'] >= 0)) {
+                if (isset($_SESSION['cart']) && (count($_SESSION['cart']) > 0))
+                    array_splice($_SESSION['cart'], $_GET['i'], 1);
+            } else {
+                if (isset($_SESSION['cart'])) unset($_SESSION['cart']);
+            }
+            if (isset($_SESSION['cart']) && (count($_SESSION['cart']) > 0)) {
+                header("location: http://localhost/cozastore/view/index.php?act=cart");
+            } else {
+                header("location: index.php");
+            }
+            break;
+        case "thanhtoan":
+            if (isset($_SESSION['cart']) && (count($_SESSION['cart']) > 0)) {
+
+                $order_status = 1;
+                $order_address = $_POST['order_address'];
+                $order_email = $_POST['order_email'];
+                $order_phone = $_POST['order_phone'];
+                $payment_id = $_POST['payment_id'];
+                $order_total = $_POST['order_total'];
+                $order_id = rand(0, 99999999);
+                if (isset($_SESSION['user_kh'])) {
+                    extract($_SESSION['user_kh']);
+                } else {
+                    $user_id = 0;
+                }
+                orders_insert($order_id, $user_id, date("Y-m-d"), $order_status, $order_address, $order_email, $order_phone, $payment_id, $order_total);
+                if (!isset($_SESSION['user_kh'])) {
+                    $_SESSION['dh'] = orders_select($order_id);
+                }
+                foreach ($_SESSION['cart'] as $item) {
+                    cart_insert($order_id, $item[1], $item[3], $item[2], $item[0], $item[4]);
+                }
+                unset($_SESSION['cart']);
+                header("location: http://localhost/cozastore/view/index.php?act=cart");
+            } else {
+                header("location: http://localhost/cozastore/view/index.php?act=cart");
+            }
+            break;
+        case "status_update":
+            $order_id = $_GET['order_id'];
+            dh_edit_order_id("3", $order_id);
+            header("location: http://localhost/cozastore/view/index.php?act=cart");
             break;
         default:
             $products = show_products_home();

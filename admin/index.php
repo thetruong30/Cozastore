@@ -19,6 +19,8 @@ include "../dao/reviews.php";
 include "../dao/comments.php";
 include "../dao/product_img.php";
 include "../dao/contact.php";
+include "../dao/cart.php";
+$dhs = dh_select_all();
 $products = products_select_all();
 extract($products);
 $listcate = category_select_all();
@@ -77,7 +79,7 @@ if (isset($_GET['act'])) {
                     }
                 }
                 if (!isset($errors)) {
-                    products_insert($product_name, $product_price,$product_img, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption);
+                    products_insert($product_name, $product_price, $product_img, $product_sale, $product_posting_date, $tag_id, $cate_id, $product_desciption);
                     move_uploaded_file($file['tmp_name'], '../upload/' . $product_img);
                     $thongbao = "Thêm thành công";
                     header("location: index.php?act=products&thongbao=$thongbao");
@@ -595,7 +597,7 @@ if (isset($_GET['act'])) {
                     }
                 }
                 if (!isset($errors)) {
-                    productimage_update($product_img_id,$product_img,$product_id );
+                    productimage_update($product_img_id, $product_img, $product_id);
                     move_uploaded_file($file['tmp_name'], '../upload/' . $product_img);
                     $thongbao = "Cập nhật thành công";
                     header("location: index.php?act=listimage_product&product_id=$product_id&thongbao=$thongbao");
@@ -615,6 +617,19 @@ if (isset($_GET['act'])) {
             break;
         case "contact":
             include "contact/list.php";
+            break;
+        case "dh":
+            include "dh/list.php";
+            break;
+        case "status_update":
+            $order_id = $_GET['order_id'];
+            dh_edit_order_id("2", $order_id);
+            header("location: http://localhost/cozastore/admin/index.php?act=dh");
+            break;
+        case "dh_detail":
+            $order_id = $_GET['order_id'];
+            $carts=cart_select_by_order_id($order_id);
+            include "dh/dh_detail.php";
             break;
         default:
             include "home.php";
