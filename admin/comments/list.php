@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="row frmtitle">
-        <h1>COMMENTS</h1>
+    <div class="row frmtitle mb-3">
+        <h1 class="title">COMMENTS</h1>
     </div>
     <?php
     if (isset($_GET['thongbao'])) {

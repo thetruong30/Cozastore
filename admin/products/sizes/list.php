@@ -1,7 +1,10 @@
 
 <div class="container">
     <div class="row frmtitle">
-        <h1>SIZES</h1>
+        <h1 class="title">SIZES</h1>
+    </div>
+    <div class="my-3 d-flex justify-content-end px-3 ">
+        <a href="index.php?act=sizes_btn_add"><input class="btn btn-success p-2 text-white bg-opacity-75 border border-0" type="button" value="ADD SIZE"></a>
     </div>
     <?php
     if (isset($_GET['thongbao'])) {
@@ -42,9 +45,9 @@
                 ?>
             </table>
         </div>
-        <div class="row mb10 text">
+        <!-- <div class="row mb10 text">
             <a href="index.php?act=sizes_btn_add"><input type="button" value="ADD"></a>
-        </div>
+        </div> -->
         <script language="javascript">
             function myFunction() {
                 alert("Bạn có muốn xóa không?");

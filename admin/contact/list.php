@@ -1,9 +1,9 @@
 <div class="container">
-    <div class="row frmtitle">
-        <h1>CONTACT</h1>
+    <div class="row frmtitle mb-3">
+        <h1 class="title">CONTACT</h1>
     </div>
     <div class="row mt frmcontent">
-        <div class="row mb10 mt frmdshanghoa text ">
+        <div class="row mb10 mt frmdshanghoa text">
             <table>
                 <tr>
                     <th>ID</th>
