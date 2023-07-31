@@ -142,22 +142,26 @@
 							foreach ($dhs as $dh) {
 								extract($dh);
 								echo "
-								<tr class='table_row'>
+									<tr class='table_row'>
 									
 
 									<td class='column-1'>" . $order_id . "</td>
 									<td class='column-2'></td>
 									<td class='column-3'>" . $order_date . "</td>
+									</td>
 									<td class='column-4'>" . $order_total . "$</td>
 									<td class='column-5'>";
 								if ($order_status == '1') {
-									echo "Đang xử lý.";
+									echo "Waiting</td>";
 								} else if ($order_status == 2) {
-									echo "Đang giao.";
+									echo "Delivery</td>";
+									$button_status = "Received";
+									echo "<td class='column-6'><a href = index.php?act=status_update&order_id=$order_id>$button_status</a></td>";
 								} else if ($order_status == 3) {
-									echo "Đã hoàn thành.";
+									echo "Complete</td>";
 								}
 								"
+								
 								</tr>
 								";
 							}
