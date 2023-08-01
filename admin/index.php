@@ -519,7 +519,7 @@ if (isset($_GET['act'])) {
             break;
         case "comments":
             $blog_id = $_GET['blog_id'];
-            $comments = comment_select_by_product($blog_id);
+            $comments = comment_select_by_blog($blog_id);
             include "comments/list.php";
             break;
         case "delcomment":

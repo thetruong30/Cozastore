@@ -37,6 +37,7 @@ if (isset($_GET['act'])) {
             $blog_id = $_GET['blog_id'];
             $blog = blog_select_by_id($blog_id);
             extract($blog);
+            $comments = comment_select_by_blog($blog_id);
             include 'blog/blog-detail.php';
             break;
         case 'products':
@@ -226,7 +227,7 @@ if (isset($_GET['act'])) {
 
                 if (strlen($key) > 0) {
                     $products = products_select_keyword($key);
-                    $total_kq = "Có tổng số " . count($products) . " sản phẩm liên quan đến từ khóa '" . $key . "'";
+                    $total_kq = "Có tổng số " . count($products) . " từ khóa sản phẩm liên quan đến '" . $key . "'";
                     include 'products/product.php';
                 } else {
                     header('location: index.php?act=products');
@@ -259,6 +260,34 @@ if (isset($_GET['act'])) {
                     $product_img = product_img_select_all_by_id($product_id);
                     $reviews = review_select_by_product($product_id);
                     include 'products/product-detail.php';
+                }
+            }
+            break;
+        case 'comment':
+            if (!isset($_SESSION['user_kh'])) {
+                header("location: user/index.php");
+                die;
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $comment_content = $_POST['comment_content'];
+                $blog_id = $_POST['blog_id'];
+                extract($_SESSION['user_kh']);
+
+
+                if (strlen($comment_content) == 0) {
+                    $err['comment_content'] = 'Không được bỏ trống.';
+                }
+
+                if (!isset($err)) {
+                    comment_create($comment_content, $user_id, $blog_id);
+                    header("location: index.php?act=blog-detail&blog_id=$blog_id&thongbao=Bình luận thành công");
+                    die;
+                } else {
+                    $blog = blog_select_by_id($blog_id);
+                    extract($blog);
+                    $comments = comment_select_by_blog($blog_id);
+                    include 'blog/blog-detail.php';
                 }
             }
             break;
@@ -344,20 +373,33 @@ if (isset($_GET['act'])) {
                 $payment_id = $_POST['payment_id'];
                 $order_total = $_POST['order_total'];
                 $order_id = rand(0, 99999999);
-                if (isset($_SESSION['user_kh'])) {
-                    extract($_SESSION['user_kh']);
+                if ($order_address == "") {
+                    $errors['order_address'] = "Invalid address";
+                }
+                if ($order_phone == "") {
+                    $errors['order_phone'] = "Invalid phonenumber";
+                }
+                if ($order_email == "") {
+                    $errors['order_email'] = "Invalid email";
+                }
+                if (!isset($errors)) {
+                    if (isset($_SESSION['user_kh'])) {
+                        extract($_SESSION['user_kh']);
+                    } else {
+                        $user_id = 0;
+                    }
+                    orders_insert($order_id, $user_id, date("Y-m-d"), $order_status, $order_address, $order_email, $order_phone, $payment_id, $order_total);
+                    if (!isset($_SESSION['user_kh'])) {
+                        $_SESSION['dh'] = orders_select($order_id);
+                    }
+                    foreach ($_SESSION['cart'] as $item) {
+                        cart_insert($order_id, $item[1], $item[3], $item[2], $item[0], $item[4]);
+                    }
+                    unset($_SESSION['cart']);
+                    header("location: http://localhost/cozastore/view/index.php?act=cart");
                 } else {
-                    $user_id = 0;
+                    include "carts/shoping-cart.php";
                 }
-                orders_insert($order_id, $user_id, date("Y-m-d"), $order_status, $order_address, $order_email, $order_phone, $payment_id, $order_total);
-                if (!isset($_SESSION['user_kh'])) {
-                    $_SESSION['dh'] = orders_select($order_id);
-                }
-                foreach ($_SESSION['cart'] as $item) {
-                    cart_insert($order_id, $item[1], $item[3], $item[2], $item[0], $item[4]);
-                }
-                unset($_SESSION['cart']);
-                header("location: http://localhost/cozastore/view/index.php?act=cart");
             } else {
                 header("location: http://localhost/cozastore/view/index.php?act=cart");
             }
@@ -366,6 +408,44 @@ if (isset($_GET['act'])) {
             $order_id = $_GET['order_id'];
             dh_edit_order_id("3", $order_id);
             header("location: http://localhost/cozastore/view/index.php?act=cart");
+            break;
+        case "updateuser":
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $file = $_FILES['user_img'];
+                $user_img = $file['name'];
+                $user_name = $_POST['user_name'];
+                $user_address = $_POST['user_address'];
+                $user_email = $_POST['user_email'];
+                $user_id = $_POST['user_id'];
+                $user_phonenumber = $_POST['user_phonenumber'];
+                if ($file['size'] > 0) {
+                    $img = ['jpg', 'png', 'gif'];
+                    //Lấy phần mở rộng của file
+                    $ext = pathinfo($user_img, PATHINFO_EXTENSION);
+                    //Kiểm tra xem $ext có trong $img không
+                    if (!in_array($ext, $img)) {
+                        $errors['user_img'] = "File không phải là ảnh";
+                    }
+                } else {
+                    $user_img = $_POST['user_img'];
+                }
+                if (!isset($errors)) {
+                    user_update($user_id, $user_name, $user_email, $user_img, $user_address, $user_phonenumber);
+                    move_uploaded_file($file['tmp_name'], '../upload/' . $user_img);
+                    $thongbao = "Cập nhật thành công";
+                    header("location: index.php?act=updateuser&thongbao=$thongbao");
+                } else {
+                    $user_img = $_POST['user_img'];
+                    include "user/update.php";
+                }
+            } else {
+                extract($_SESSION['user_kh']);
+                $user = user_select_by_id($user_id);
+                extract($user);
+                include "user/update.php";
+            }
+
             break;
         default:
             $products = show_products_home();

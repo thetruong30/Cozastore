@@ -26,10 +26,10 @@ function comment_select_all()
 
 function comment_select_by_id($comment_id)
 {
-    $sql = 'select * from comments where review_id=?';
+    $sql = 'select * from comments where comment_id=?';
     return pdo_query_one($sql, $comment_id);
 }
-function comment_select_by_product($blog_id)
+function comment_select_by_blog($blog_id)
 {
     $sql = 'select * from comments where blog_id=?';
     return pdo_query($sql, $blog_id);
