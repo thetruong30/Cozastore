@@ -226,7 +226,7 @@ if (isset($_GET['act'])) {
 
                 if (strlen($key) > 0) {
                     $products = products_select_keyword($key);
-                    $total_kq = "Có tổng số " . count($products) . " từ khóa sản phẩm liên quan đến '" . $key . "'";
+                    $total_kq = "Có tổng số " . count($products) . " sản phẩm liên quan đến từ khóa '" . $key . "'";
                     include 'products/product.php';
                 } else {
                     header('location: index.php?act=products');

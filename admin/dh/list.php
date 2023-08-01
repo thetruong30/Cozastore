@@ -1,6 +1,11 @@
+<style>
+    #last{
+        background: lightgreen;
+    }
+</style>
 <div class="container">
-    <div class="row frmtitle">
-        <h1>Don Hang</h1>
+    <div class="row frmtitle mb-3">
+        <h1 class="title">Don Hang</h1>
     </div>
     <?php
     if (isset($_GET['thongbao'])) {
@@ -55,7 +60,7 @@
                     echo '</td>
                     <td><a href="' . $detail . '"><input type="button" value="Detail"></a>';
                     if ($order_status == 1) {
-                        echo '<a href="' . $status . '"><input type="button" value=' . $button_status . '></a>';
+                        echo '<a href="' . $status . '"><input id=\'last\' type="button" value=' . $button_status . '></a>';
                     };
                     echo ' </td></tr> ';
                 }

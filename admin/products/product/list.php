@@ -2,8 +2,16 @@
     <div class="row frmtitle">
         <h1 class="title">PRODUCTS</h1>
     </div>
-    <div class="my-3 d-flex justify-content-end px-3 ">
-        <a href="index.php?act=addproduct"><input class="btn btn-success p-2 text-white bg-opacity-75 border border-0" type="button" value="ADD PRODUCT"></a>
+    <div class=" my-3 d-flex justify-content-end px-3">
+        <form action="" method="post">
+            
+        </form>
+
+        <div class="mx-2">
+            <a href="index.php?act=addproduct">
+                <input class="btn btn-success p-2 text-white bg-opacity-75 border border-0" type="button" value="ADD PRODUCT">
+            </a>
+        </div>
     </div>
     <?php
     if (isset($_GET['thongbao'])) {
@@ -76,6 +84,6 @@
         <!-- <div class="row mb10 text">
             <a href="index.php?act=addproduct"><input type="button" value="ADD"></a>
         </div> -->
-        
+
     </div>
 </div>

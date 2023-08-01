@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row frmtitle ">
+    <div class="row frmtitle mb-3">
         <div class="">
             <h1 class="title">BLOGS</h1>
         </div>
@@ -21,7 +21,6 @@
         <div class="row mb10 mt frmdshanghoa text ">
             <table>
                 <tr>
-
                     <th>ID</th>
                     <th>TITLE</th>
                     <th>CONTENT</th>
@@ -49,7 +48,7 @@
                          
                          <td>' . $blog_id . '</td>
                          <td>' . $blog_title . '</td>
-                         <td>' . $blog_content . '</td>
+                         <td style=\'text-align: justify;\'>' . $blog_content . '</td>
                          <td>' . $blog_img . '</td>
                          <td>' . $blog_post_date . '</td>
                          <td>' . $user_id . '</td>

@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="row frmtitle">
-        <h1>CART</h1>
+    <div class="row frmtitle mb-3">
+        <h1 class="title">CART</h1>
     </div>
     <div class="row mt frmcontent">
         <div class="row mb10 mt frmdshanghoa text ">
