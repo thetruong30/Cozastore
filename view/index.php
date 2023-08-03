@@ -333,10 +333,13 @@ if (isset($_GET['act'])) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $arr = $_POST['so_luong'];
                 $i = 0;
+                // print_r($arr);
+
                 foreach ($arr as $ar => $a) {
                     if (isset($i) && ($i >= 0)) {
                         if ($a == 0) {
                             array_splice($_SESSION['cart'], $i, 1);
+                            continue;
                         } else {
                             $_SESSION['cart'][$i][4] = $a;
                         }

@@ -265,12 +265,6 @@
 					$tong = 0;
 					$i = 0;
 					if ((isset($_SESSION['cart'])) && (count($_SESSION['cart']) > 0)) {
-
-
-						// foreach ($carts as $cart) {
-						// 	extract($cart);
-
-
 						foreach ($_SESSION['cart'] as $item) {
 							$product = product_detail_select_by_id($item[0]);
 							extract($product);
