@@ -30,6 +30,15 @@
 
 
 						<div class="slick3 gallery-lb">
+							<div class="item-slick3" data-thumb="../upload/<?= $product['product_img'] ?>">
+								<div class="wrap-pic-w pos-relative">
+									<img src="../upload/<?= $product['product_img'] ?>" alt="IMG-PRODUCT">
+
+									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../upload/<?= $product['product_img'] ?>">
+										<i class="fa fa-expand"></i>
+									</a>
+								</div>
+							</div>
 							<?php foreach ($product_img as $pro) : ?>
 								<div class="item-slick3" data-thumb="../upload/<?= $pro['product_img'] ?>">
 									<div class="wrap-pic-w pos-relative">
@@ -160,7 +169,7 @@
 				<ul class="nav nav-tabs" role="tablist">
 
 					<li class="nav-item p-b-10">
-						<a class="nav-link active" data-toggle="tab" href="#reviews" role="tab">Reviews (<?=count($reviews)?>)</a>
+						<a class="nav-link active" data-toggle="tab" href="#reviews" role="tab">Reviews (<?= count($reviews) ?>)</a>
 					</li>
 
 					<li class="nav-item p-b-10">
