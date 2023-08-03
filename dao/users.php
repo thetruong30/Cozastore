@@ -17,10 +17,10 @@ function check_email($user_email)
     return pdo_query_one($sql, $user_email);
 }
 
-function user_update($user_id, $user_name, $user_email, $user_password, $user_img, $user_roll, $user_address, $user_phonenumber)
+function user_update($user_id, $user_name, $user_email,$user_img, $user_address, $user_phonenumber)
 {
-    $sql = "UPDATE users SET user_name=?,user_email=?,user_password=?,user_img=?,user_roll=?,user_address=? ,user_phonenumber=? WHERE user_id=?";
-    pdo_execute($sql, $user_name, $user_email, $user_password, $user_img, $user_roll == 0, $user_address, $user_phonenumber, $user_id);
+    $sql = "UPDATE users SET user_name=?,user_email=?,user_img=?,user_address=? ,user_phonenumber=? WHERE user_id=?";
+    pdo_execute($sql, $user_name, $user_email, $user_img, $user_address, $user_phonenumber, $user_id);
 }
 
 function user_delete($user_id)

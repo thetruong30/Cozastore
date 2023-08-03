@@ -64,14 +64,36 @@
 							Your email address will not be published. Required fields are marked *
 						</p>
 
-						<form>
+						<form action="index.php?act=comment" method="post">
 							<div class="bor19 m-b-20">
-								<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="cmt" placeholder="Comment..."></textarea>
+								<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="comment_content" placeholder="Comment..."></textarea>
 							</div>
-							<button class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04">
+							<span style="color:red">
+								<?= $err['comment_content'] ?? '' ?>
+							</span>
+							<input type="hidden" name="blog_id" value="<?= $blog_id ?>">
+							<button class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04" type="submit">
 								Post Comment
 							</button>
 						</form>
+						<?php foreach ($comments as $comment) : ?>
+							<div class="p-b-10">
+								<div class="flex-w align-items-center">
+									<?php $user_kh = user_select_by_id($comment['user_id']); ?>
+									<span><?= $user_kh['user_id'] ?></span>
+									<div class="wrap-pic-s size-109 bor0 of-hidden m-l-18 m-r-18 m-t-6">
+										<img src="../upload/<?= $user_kh['user_img'] ?? '' ?>" alt="AVATAR">
+									</div>
+								</div>
+
+								<div class="size-207">
+									<p class="stext-102 cl6">
+										<?= $comment['comment_content'] ?>
+									</p>
+								</div>
+							</div>
+							<hr>
+						<?php endforeach ?>
 					</div>
 				</div>
 			</div>
