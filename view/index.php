@@ -108,7 +108,7 @@ if (isset($_GET['act'])) {
             $total_product = count($resutls);
 
             // Tổng số sản phẩm trong 1 trang
-            $resutls_per_page = 12;
+            $resutls_per_page = 8;
 
             if (!isset($_GET['pages'])) {
                 $num_page = 1;
@@ -125,7 +125,7 @@ if (isset($_GET['act'])) {
 
             $products = show_products_all_cate($cate_id, $page_first_resutls, $resutls_per_page);
 
-            include 'products/product.php';
+            include 'products/product_list_by_cate.php';
             break;
         case 'filter_price':
 
@@ -170,7 +170,7 @@ if (isset($_GET['act'])) {
             // Phân trang
             $resutls = products_select_by_tag($tag_id);
             $total_product = count($resutls);
-            $resutls_per_page = 8;
+            $resutls_per_page = 4;
             if (!isset($_GET['pages'])) {
                 $num_page = 1;
             } else {
@@ -180,27 +180,7 @@ if (isset($_GET['act'])) {
             $total_page = ceil($total_product / $resutls_per_page);
             $total_kq = "Có tổng số " . $total_product . " sản phẩm liên quan đến '" . $tag['tag_name'] . "'";
             $products = filter_tag($tag_id, $page_first_resutls, $resutls_per_page);
-            include 'products/product.php';
-            break;
-        case 'price_low_to_high':
-            $resutls = products_select_all();
-            $total_product = count($resutls);
-
-            $resutls_per_page = 12; // Tổng số sản phẩm trong 1 trang
-
-            if (!isset($_GET['pages'])) {
-                $num_page = 1;
-            } else {
-                $num_page = $_GET['pages'];
-            }
-            $page_first_resutls = ($num_page - 1) * $resutls_per_page; // lấy sản phẩm bắt đầu của trang
-
-            // Lấy tổng số trang
-            $total_page = ceil($total_product / $resutls_per_page);
-
-            $products = products_select_all_sx_price();
-
-            include 'products/product.php';
+            include 'products/product_list_by_tag.php';
             break;
         case 'price_high_to_low':
             $resutls = products_select_all();
@@ -217,9 +197,29 @@ if (isset($_GET['act'])) {
 
             // Lấy tổng số trang
             $total_page = ceil($total_product / $resutls_per_page);
-            $products = products_select_all_sx_high_to_low();
 
-            include 'products/product.php';
+            $products = products_select_all_sx_price($page_first_resutls, $resutls_per_page);
+
+            include 'products/product_sx_price_high.php';
+            break;
+        case 'price_low_to_high':
+            $resutls = products_select_all();
+            $total_product = count($resutls);
+
+            $resutls_per_page = 12; // Tổng số sản phẩm trong 1 trang
+
+            if (!isset($_GET['pages'])) {
+                $num_page = 1;
+            } else {
+                $num_page = $_GET['pages'];
+            }
+            $page_first_resutls = ($num_page - 1) * $resutls_per_page; // lấy sản phẩm bắt đầu của trang
+
+            // Lấy tổng số trang
+            $total_page = ceil($total_product / $resutls_per_page);
+            $products = products_select_all_sx_high_to_low($page_first_resutls, $resutls_per_page);
+
+            include 'products/product_sx_price_low.php';
             break;
         case 'search_keyword':
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {

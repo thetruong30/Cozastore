@@ -99,7 +99,7 @@
 		<div class="flex-c-m flex-w w-full p-t-38">
 			<?php if (isset($total_page)) : ?>
 				<?php for ($i = 1; $i <= $total_page; $i++) : ?>
-					<a href="index.php?act=product&pages=<?= $i ?? '' ?>" class="flex-c-m how-pagination1 trans-04 m-all-7 <?= $i == $num_page ? 'active-pagination1' : '' ?>">
+					<a href="index.php?act=products_cate&cate_id=<?=$cate_id?>&pages=<?= $i ?? '' ?>" class="flex-c-m how-pagination1 trans-04 m-all-7 <?= $i == $num_page ? 'active-pagination1' : '' ?>">
 						<?= $i ?>
 					</a>
 				<?php endfor ?>
