@@ -50,13 +50,14 @@
 
 		<div class="flex-w flex-sb-m p-b-52">
 			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-					All Products
-				</button>
+				<a href="index.php?act=products">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+						All Products
+					</button>
+				</a>
 
 				<?php foreach ($categories as $category) : ?>
-					<a href="index.php?act=products_cate&cate_id=<?=$category['cate_id']?>">
+					<a href="index.php?act=products_cate&cate_id=<?= $category['cate_id'] ?>">
 						<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
 							<?= $category['cate_name'] ?>
 						</button>
@@ -126,7 +127,7 @@
 					</a>
 				</div>
 			<?php endforeach ?>
-			
+
 		</div>
 
 		<!-- Pagination -->
