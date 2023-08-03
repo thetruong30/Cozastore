@@ -12,7 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $user_password = $_POST['user_password'];
   $check_user = check_user($user_id, $user_password);
   // chuan bi
-  if (is_array($check_user)) {
+  extract($check_user);
+  if (is_array($check_user) && $user_roll==1) {
     $_SESSION['user'] = $check_user;
     $thongbao = "Đăng nhập thành công";
     if (isset($thongbao)) {
@@ -23,6 +24,7 @@ window.onload = function () { alert("' . $thongbao . '"); }
     }
     header("location: index.php");
   } else {
+    
     $thongbao = "Tài khoản không tồn tại";
     if (isset($thongbao)) {
       echo '<script type="text/javascript">
