@@ -63,7 +63,7 @@ if (!is_file($hinhpath)) {
                 <label for="">Tag</label>
                 <select class="form-control" name="tag_id" id="">
                     <?php foreach ($tags as $tag) : ?>
-                        <option value="<?= $tag['tag_id'] ?>">
+                        <option value="<?= $tag['tag_id'] ?>" <?=$tag_id == $tag['tag_id'] ? 'selected' : ''?>>
                             <?= $tag['tag_name'] ?>
                         </option>
                     <?php endforeach ?>
@@ -73,7 +73,7 @@ if (!is_file($hinhpath)) {
                 <label for="">Category</label>
                 <select class="form-control" name="cate_id" id="">
                     <?php foreach ($listcate as $cate) : ?>
-                        <option value="<?= $cate['cate_id'] ?>">
+                        <option value="<?= $cate['cate_id'] ?>" <?=$cate_id == $cate['cate_id'] ? 'selected' : ''?>>
                             <?= $cate['cate_name'] ?>
                         </option>
                     <?php endforeach ?>
