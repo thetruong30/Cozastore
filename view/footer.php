@@ -8,29 +8,14 @@
 				</h4>
 
 				<ul>
+					<?php foreach($categories as $cate) :?>
 					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Women
+						<a href="index.php?act=products_cate&cate_id=<?= $cate['cate_id'] ?>" class="stext-107 cl7 hov-cl1 trans-04">
+						<?= $cate['cate_name'] ?>
 						</a>
 					</li>
-
-					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Men
-						</a>
-					</li>
-
-					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Shoes
-						</a>
-					</li>
-
-					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Watches
-						</a>
-					</li>
+					<?php endforeach ?>
+					
 				</ul>
 			</div>
 

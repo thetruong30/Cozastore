@@ -37,3 +37,7 @@ function category_exist($cate_id)
     $sql = "SELECT count(*) FROM categories WHERE cate_id=?";
     return pdo_query_value($sql, $cate_id) > 0;
 }
+function category_home(){
+    $sql = 'SELECT * FROM categories LIMIT 6';
+    return pdo_query($sql);
+}

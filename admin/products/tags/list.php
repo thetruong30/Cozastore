@@ -1,7 +1,10 @@
 
 <div class="container">
     <div class="row frmtitle">
-        <h1>TAGS</h1>
+        <h1 class="title">TAGS</h1>
+    </div>
+    <div class="my-3 d-flex justify-content-end px-3 ">
+        <a href="index.php?act=tags_btn_add"><input class="btn btn-success p-2 text-white bg-opacity-75 border border-0" type="button" value="ADD TAG"></a>
     </div>
     <?php
     if (isset($_GET['thongbao'])) {
@@ -23,22 +26,6 @@
                     <th></th>
                 </tr>
                 
-
-                <!-- // foreach ($tags as $tag) {
-                //     extract($tag);
-                //     $updatepro = "index.php?act=tag_btn_edit&tag_id=" . $tag_id;
-                //     $delpro = "index.php?act=tag_btn_delete&tag_id=" . $tag_id;
-                    
-
-                //     echo '
-                //          <tr>
-                         
-                //          <td>' . $tag_id . '</td>
-                //          <td>' . $tag_name . '</td>
-                //          <td><a href="' . $updatepro . '"><input type="button" value="Update"></a> <a href="' . $delpro . '"><input type="button" onclick="myFunction()" value="Delete"></a></td>
-                //          </tr>';
-                // } -->
-
                 <?php foreach($tags as $tag) : ?>
                     <?php extract($tag); ?>
                     <tr>
@@ -53,9 +40,9 @@
                 <?php endforeach ?>
             </table>
         </div>
-        <div class="row mb10 text">
+        <!-- <div class="row mb10 text">
             <a href="index.php?act=tags_btn_add"><input type="button" value="ADD"></a>
-        </div>
+        </div> -->
         <script language="javascript">
             function myFunction() {
                 alert("Bạn có muốn xóa không?");

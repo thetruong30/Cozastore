@@ -1,7 +1,9 @@
-
 <div class="container">
     <div class="row frmtitle">
-        <h1>CATEGORY</h1>
+        <h1 class="title">CATEGORY</h1>
+    </div>
+    <div class="my-3 d-flex justify-content-end px-3 ">
+        <a href="index.php?act=addcategory"><input class="btn btn-success p-2 text-white bg-opacity-75 border border-0" type="button" value="ADD CATEGORY"></a>
     </div>
     <?php
     if (isset($_GET['thongbao'])) {
@@ -17,7 +19,7 @@
         <div class="row mb10 mt frmdshanghoa text ">
             <table>
                 <tr>
-                    
+
                     <th>ID</th>
                     <th>NAME CATEGORY</th>
                     <th>IMAGE</th>
@@ -35,7 +37,7 @@
                     }
                     $updatecate = "index.php?act=updatecategory&cate_id=" . $cate_id;
                     $delcate = "index.php?act=delcategory&cate_id=" . $cate_id;
-                    
+
 
                     echo '
                          <tr>
@@ -50,9 +52,7 @@
                 ?>
             </table>
         </div>
-        <div class="row mb10 text">
-            <a href="index.php?act=addcategory"><input type="button" value="ADD"></a>
-        </div>
+
         <script language="javascript">
             function myFunction() {
                 alert("Bạn có muốn xóa không?");
