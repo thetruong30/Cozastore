@@ -18,13 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       $_SESSION['user'] = $check_user;
       $thongbao = "Đăng nhập thành công";
-      if (isset($thongbao)) {
-        echo '<script type="text/javascript">
-
-window.onload = function () { alert("' . $thongbao . '"); }
-      </script>';
-      }
-      header("location: index.php");
+      header("location: index.php?thongbao=$thongbao");
     } else {
       $thongbao = "Vai trò không đúng!";
       

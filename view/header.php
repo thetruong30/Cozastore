@@ -287,7 +287,7 @@
 									</a>
 
 									<span class="header-cart-item-info">
-										<?= $item[4] ?> x <?= $item[3] ?>
+										<?= $item[4] ?> x <?= $item[3] ?>$
 									</span>
 								</div>
 							</li>
