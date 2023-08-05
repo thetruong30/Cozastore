@@ -175,6 +175,7 @@
 		</form>
 
 		<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+			<?php if ((isset($_SESSION['cart'])) && (count($_SESSION['cart']) > 0)) { ?>
 			<form action="index.php?act=thanhtoan" method="post">
 				<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
 					<h4 class="mtext-109 cl2 p-b-30">
@@ -205,23 +206,23 @@
 						<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 							<div class="p-t-15">
 								<div class="bor8 bg0 m-b-12">
-									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="order_address" placeholder="Address"value="<?= $order_address ?? '' ?>">
+									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="order_address" placeholder="Address" value="<?= $order_address ?? '' ?>">
 								</div>
 								<span style="color:red">
-										<?= $errors['order_address'] ?? '' ?>
-									</span>
+									<?= $errors['order_address'] ?? '' ?>
+								</span>
 								<div class="bor8 bg0 m-b-12">
-									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="email" name="order_email" placeholder="Email"value="<?= $order_email ?? '' ?>">
+									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="email" name="order_email" placeholder="Email" value="<?= $order_email ?? '' ?>">
 								</div>
 								<span style="color:red">
-										<?= $errors['order_email'] ?? '' ?>
-									</span>
+									<?= $errors['order_email'] ?? '' ?>
+								</span>
 								<div class="bor8 bg0 m-b-22">
-									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="tel" name="order_phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" placeholder="Phonenumber"value="<?= $order_phone ?? '' ?>">
+									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="tel" name="order_phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" placeholder="Phonenumber" value="<?= $order_phone ?? '' ?>">
 								</div>
 								<span style="color:red">
-										<?= $errors['order_phone'] ?? '' ?>
-									</span>
+									<?= $errors['order_phone'] ?? '' ?>
+								</span>
 								<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
 									<select id="province" class="js-select2" name="payment_id">
 										<?php foreach ($payments as $payment) : ?>
@@ -253,6 +254,7 @@
 					</button>
 				</div>
 			</form>
+			<?php }?>
 		</div>
 
 	</div>

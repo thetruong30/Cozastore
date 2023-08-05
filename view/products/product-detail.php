@@ -84,7 +84,6 @@
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
 										<select class="js-select2" name="size_id">
-											<option>Choose an option</option>
 											<?php foreach ($sizes as $size) : ?>
 												<option value="<?= $size['size_id'] ?>">Size <?= $size['size_name'] ?></option>
 											<?php endforeach ?>
@@ -103,7 +102,6 @@
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
 										<select class="js-select2" name="color_id">
-											<option>Choose an option</option>
 											<?php foreach ($colors as $color) : ?>
 												<option value="<?= $color['color_id'] ?>"><?= $color['color_name'] ?></option>
 											<?php endforeach ?>
