@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -44,167 +45,167 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <div style="display: flex; justify-content: space-between; margin-top:10px">
-        <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin6">
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <a class="navbar-brand" href="index.php">
-                        <!-- Logo icon -->
-                        <b class="logo-icon">
-                            <!-- Dark Logo icon -->
-                            <img src="plugins/images/logo-icon.png" alt="homepage" />
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span class="logo-text">
-                            <!-- dark Logo text -->
-                            <img src="plugins/images/logo-text.png" alt="homepage" />
-                        </span>
-                    </a>
+            <header class="topbar" data-navbarbg="skin5">
+                <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                    <div class="navbar-header" data-logobg="skin6">
+                        <!-- ============================================================== -->
+                        <!-- Logo -->
+                        <!-- ============================================================== -->
+                        <a class="navbar-brand" href="index.php">
+                            <!-- Logo icon -->
+                            <b class="logo-icon">
+                                <!-- Dark Logo icon -->
+                                <img src="plugins/images/logo-icon.png" alt="homepage" />
+                            </b>
+                            <!--End Logo icon -->
+                            <!-- Logo text -->
+                            <span class="logo-text">
+                                <!-- dark Logo text -->
+                                <img src="plugins/images/logo-text.png" alt="homepage" />
+                            </span>
+                        </a>
+                        <!-- ============================================================== -->
+                        <!-- End Logo -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- toggle and nav items -->
+                        <!-- ============================================================== -->
+                        <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                    </div>
                     <!-- ============================================================== -->
                     <!-- End Logo -->
                     <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-
-                    <!-- ============================================================== -->
-                    <!-- Right side toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav ms-auto d-flex align-items-center">
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
 
                         <!-- ============================================================== -->
-                        <!-- Search -->
+                        <!-- Right side toggle and nav items -->
                         <!-- ============================================================== -->
+                        <ul class="navbar-nav ms-auto d-flex align-items-center">
 
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <li>
+                            <!-- ============================================================== -->
+                            <!-- Search -->
+                            <!-- ============================================================== -->
 
-                        </li>
-                        <!-- <li class=" in">
+                            <!-- ============================================================== -->
+                            <!-- User profile and search -->
+                            <!-- ============================================================== -->
+                            <li>
+
+                            </li>
+                            <!-- <li class=" in">
                             <a href="logout.php">Đăng xuất</a>
                         </li> -->
 
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar" data-sidebarbg="skin6">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <!-- User Profile-->
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=listcategory" aria-expanded="false">
-                                <i class="fa fa-font" aria-hidden="true"></i>
-                                <span class="hide-menu">Category</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item pt-2 menu__cha">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=products" aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Products</span>
-                            </a>
-                            <!-- Menu đa cấp -->
-                            <ul class="menu__con">
-                                <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=products" aria-expanded="false">
-                                        <span class="hide-menu">Product</span>
-                                    </a>
-                                </li>
-                                <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=color_list" aria-expanded="false">
-                                        <span class="hide-menu">Color</span>
-                                    </a>
-                                </li>
-                                <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=sizes_btn_list" aria-expanded="false">
-                                        <span class="hide-menu">Size</span>
-                                    </a>
-                                </li>
-                                <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=tags_btn_list" aria-expanded="false">
-                                        <span class="hide-menu">Tag</span>
-                                    </a>
-                                </li>
-
-                                <li class="menu__items">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=list_product" aria-expanded="false">
-                                        <span class="hide-menu">Images</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                            <!-- end -->
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=reviewspro" aria-expanded="false">
-                                <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Reviews</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=users" aria-expanded="false">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hide-menu">Users</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=blogs" aria-expanded="false">
-                                <i class="fa fa-globe" aria-hidden="true"></i>
-                                <span class="hide-menu">Blogs</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=commentsblogs" aria-expanded="false">
-                                <i class="fa fa-columns" aria-hidden="true"></i>
-                                <span class="hide-menu">Comments</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=dh" aria-expanded="false">
-                                <i class="fa fa-columns" aria-hidden="true"></i>
-                                <span class="hide-menu">Orders</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=contact" aria-expanded="false">
-                                <i class="fa fa-columns" aria-hidden="true"></i>
-                                <span class="hide-menu">Contact</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="logout.php" aria-expanded="false">
-                                <i id="fa fa-camera-retro" aria-hidden="true"></i>
-                                <span class="hide-menu">Log out</span>
-                            </a>
-                        </li>
-                    </ul>
-
+                            <!-- ============================================================== -->
+                            <!-- User profile and search -->
+                            <!-- ============================================================== -->
+                        </ul>
+                    </div>
                 </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
+            </header>
+            <!-- ============================================================== -->
+            <!-- End Topbar header -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Left Sidebar - style you can find in sidebar.scss  -->
+            <!-- ============================================================== -->
+            <aside class="left-sidebar" data-sidebarbg="skin6">
+                <!-- Sidebar scroll-->
+                <div class="scroll-sidebar">
+                    <!-- Sidebar navigation-->
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav">
+                            <!-- User Profile-->
+
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=listcategory" aria-expanded="false">
+                                    <i class="fa fa-font" aria-hidden="true"></i>
+                                    <span class="hide-menu">Category</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item pt-2 menu__cha">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=products" aria-expanded="false">
+                                    <i class="far fa-clock" aria-hidden="true"></i>
+                                    <span class="hide-menu">Products</span>
+                                </a>
+                                <!-- Menu đa cấp -->
+                                <ul class="menu__con">
+                                    <li class="menu__items">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=products" aria-expanded="false">
+                                            <span class="hide-menu">Product</span>
+                                        </a>
+                                    </li>
+                                    <li class="menu__items">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=color_list" aria-expanded="false">
+                                            <span class="hide-menu">Color</span>
+                                        </a>
+                                    </li>
+                                    <li class="menu__items">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=sizes_btn_list" aria-expanded="false">
+                                            <span class="hide-menu">Size</span>
+                                        </a>
+                                    </li>
+                                    <li class="menu__items">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=tags_btn_list" aria-expanded="false">
+                                            <span class="hide-menu">Tag</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="menu__items">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=list_product" aria-expanded="false">
+                                            <span class="hide-menu">Images</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                                <!-- end -->
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=reviewspro" aria-expanded="false">
+                                    <i class="fa fa-table" aria-hidden="true"></i>
+                                    <span class="hide-menu">Reviews</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=users" aria-expanded="false">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span class="hide-menu">Users</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=blogs" aria-expanded="false">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                    <span class="hide-menu">Blogs</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=commentsblogs" aria-expanded="false">
+                                    <i class="fa fa-columns" aria-hidden="true"></i>
+                                    <span class="hide-menu">Comments</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=dh" aria-expanded="false">
+                                    <i class="fa fa-columns" aria-hidden="true"></i>
+                                    <span class="hide-menu">Orders</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=contact" aria-expanded="false">
+                                    <i class="fa fa-columns" aria-hidden="true"></i>
+                                    <span class="hide-menu">Contact</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="logout.php" aria-expanded="false">
+                                    <i id="fa fa-camera-retro" aria-hidden="true"></i>
+                                    <span class="hide-menu">Log out</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </nav>
+                    <!-- End Sidebar navigation -->
+                </div>
+                <!-- End Sidebar scroll-->
+            </aside>
