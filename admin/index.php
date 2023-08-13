@@ -5,6 +5,13 @@ if (!isset($_SESSION['user'])) {
     header("location: login.php");
     die;
 }
+if (isset($_GET['thongbao'])) {
+    $thongbao = $_GET['thongbao'];
+    echo '<script type="text/javascript">
+  
+  window.onload = function () { alert("' . $thongbao . '"); }
+  </script>';
+}
 include "header.php";
 include "../dao/pdo.php";
 include "../dao/users.php";

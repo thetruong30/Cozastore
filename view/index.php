@@ -327,7 +327,7 @@ if (isset($_GET['act'])) {
                     $_SESSION['cart'][] = $item;
                 }
 
-                header("location: http://localhost/cozastore/view/index.php?act=products");
+                header("location: http://localhost/cozastore/view/index.php?act=product_detail&pro_id=$product_id");
             }
             break;
         case "updatecart":
