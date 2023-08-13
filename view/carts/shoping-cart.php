@@ -218,7 +218,7 @@
 									<?= $errors['order_email'] ?? '' ?>
 								</span>
 								<div class="bor8 bg0 m-b-22">
-									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="tel" name="order_phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" placeholder="Phonenumber" value="<?= $order_phone ?? '' ?>">
+									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="tel" name="order_phone" placeholder="Phonenumber" value="<?= $order_phone ?? '' ?>">
 								</div>
 								<span style="color:red">
 									<?= $errors['order_phone'] ?? '' ?>

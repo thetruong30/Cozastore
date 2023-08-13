@@ -59,7 +59,7 @@ function dh_select_all_user($user_id)
 }
 function dh_select_all()
 {
-    $sql = 'select * from orders ';
+    $sql = 'select * from orders ORDER BY order_date DESC';
     return pdo_query($sql);
 }
 function dh_select_all_order_id($order_id)
