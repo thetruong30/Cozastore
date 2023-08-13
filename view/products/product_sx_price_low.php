@@ -85,7 +85,7 @@
 								</div>
 								<div class="block2-txt-child2 flex-r p-t-3">
 									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<?= $pro['product_sale'] ?  $pro['product_sale'] . '%' : '' ?>
+									<?= $pro['product_sale'] ?  $pro['product_sale'] . '%' : '' ?>
 										<!-- <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> -->
 									</a>
@@ -100,7 +100,7 @@
 		<div class="flex-c-m flex-w w-full p-t-38">
 			<?php if (isset($total_page)) : ?>
 				<?php for ($i = 1; $i <= $total_page; $i++) : ?>
-					<a href="index.php?act=products&pages=<?= $i ?? '' ?>" class="flex-c-m how-pagination1 trans-04 m-all-7 <?= $i == $num_page ? 'active-pagination1' : '' ?>">
+					<a href="index.php?act=price_low_to_high&pages=<?= $i ?? '' ?>" class="flex-c-m how-pagination1 trans-04 m-all-7 <?= $i == $num_page ? 'active-pagination1' : '' ?>">
 						<?= $i ?>
 					</a>
 				<?php endfor ?>

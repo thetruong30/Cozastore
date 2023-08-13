@@ -67,7 +67,7 @@
 					<!-- Block2 -->
 					<a href="index.php?act=product_detail&pro_id=<?= $pro['product_id'] ?? '' ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 						<div class="block2">
-							
+
 							<div class="block2-pic hov-img0" data-label="New">
 								<img src="../upload/<?= $pro['product_img'] ?? 'errors.jpg' ?>" style="height: 334px" alt="IMG-PRODUCT">
 
@@ -100,7 +100,7 @@
 		<div class="flex-c-m flex-w w-full p-t-38">
 			<?php if (isset($total_page)) : ?>
 				<?php for ($i = 1; $i <= $total_page; $i++) : ?>
-					<a href="index.php?act=products&pages=<?= $i ?? '' ?>" class="flex-c-m how-pagination1 trans-04 m-all-7 <?= $i == $num_page ? 'active-pagination1' : '' ?>">
+					<a href="index.php?act=filter_tag&tag_id=<?= $tag_id ?>&pages=<?= $i ?? '' ?>" class="flex-c-m how-pagination1 trans-04 m-all-7 <?= $i == $num_page ? 'active-pagination1' : '' ?>">
 						<?= $i ?>
 					</a>
 				<?php endfor ?>

@@ -197,6 +197,7 @@
 												<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
 											</div>
 										</div>
+										<span style="color: #F54748;"><?=$err['cmt'] ?? ''?> </span>
 										<input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
 
 										<button type="submit" class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
@@ -209,10 +210,11 @@
 										<div class="p-b-10">
 											<div class="flex-w align-items-center">
 												<?php $user_kh = user_select_by_id($review['user_id']); ?>
-												<span><?= $user_kh['user_id'] ?></span>
+												
 												<div class="wrap-pic-s size-109 bor0 of-hidden m-l-18 m-r-18 m-t-6">
-													<img src="../upload/<?= $user_kh['user_img'] ?? '' ?>" alt="AVATAR">
+													<img src="../upload/<?= $user_kh['user_img'] ?? '149071.png' ?>" alt="AVATAR">
 												</div>
+												<span><?= $user_kh['user_id'] ?></span>
 											</div>
 
 											<div class="size-207">

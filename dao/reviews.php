@@ -35,6 +35,6 @@ function review_select_by_id($review_id)
 }
 function review_select_by_product($product_id)
 {
-    $sql = 'select * from reviews where product_id=?';
+    $sql = 'select * from reviews where product_id=? ORDER BY review_id DESC';
     return pdo_query($sql, $product_id);
 }

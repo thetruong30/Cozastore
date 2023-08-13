@@ -29,14 +29,14 @@ function filter_tag($tag_id,$first,$second){
     return pdo_query($sql, $tag_id);
 }
 
-function products_select_all_sx_price()
+function products_select_all_sx_price($page_first_resutls, $resutls_per_page)
 {
-    $sql = "SELECT * FROM products ORDER BY product_price DESC";
+    $sql = "SELECT * FROM products ORDER BY product_price DESC LIMIT $page_first_resutls,$resutls_per_page";
     return pdo_query($sql);
 }
 
-function products_select_all_sx_high_to_low()
+function products_select_all_sx_high_to_low($page_first_resutls, $resutls_per_page)
 {
-    $sql = "SELECT * FROM products ORDER BY product_price";
+    $sql = "SELECT * FROM products ORDER BY product_price LIMIT $page_first_resutls, $resutls_per_page";
     return pdo_query($sql);
 }
