@@ -67,7 +67,7 @@
 					<!-- Block2 -->
 					<a href="index.php?act=product_detail&pro_id=<?= $pro['product_id'] ?? '' ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 						<div class="block2">
-							
+
 							<div class="block2-pic hov-img0" data-label="New">
 								<img src="../upload/<?= $pro['product_img'] ?? 'errors.jpg' ?>" style="height: 334px" alt="IMG-PRODUCT">
 
@@ -85,8 +85,9 @@
 								</div>
 								<div class="block2-txt-child2 flex-r p-t-3">
 									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+										<?= $pro['product_sale'] ?  $pro['product_sale'] . '%' : '' ?>
+										<!-- <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
+										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> -->
 									</a>
 								</div>
 							</div>
@@ -99,7 +100,7 @@
 		<div class="flex-c-m flex-w w-full p-t-38">
 			<?php if (isset($total_page)) : ?>
 				<?php for ($i = 1; $i <= $total_page; $i++) : ?>
-					<a href="index.php?act=products_cate&cate_id=<?=$cate_id?>&pages=<?= $i ?? '' ?>" class="flex-c-m how-pagination1 trans-04 m-all-7 <?= $i == $num_page ? 'active-pagination1' : '' ?>">
+					<a href="index.php?act=products_cate&cate_id=<?= $cate_id ?>&pages=<?= $i ?? '' ?>" class="flex-c-m how-pagination1 trans-04 m-all-7 <?= $i == $num_page ? 'active-pagination1' : '' ?>">
 						<?= $i ?>
 					</a>
 				<?php endfor ?>

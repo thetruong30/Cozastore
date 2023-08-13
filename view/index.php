@@ -18,6 +18,7 @@ require_once '../dao/cart.php';
 require_once '../dao/product_detail.php';
 include 'header.php';
 $categories = category_home();
+$categories_all = category_select_all();
 $payments = pay_select_all();
 if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 // $products = show_products_home();
@@ -225,9 +226,9 @@ if (isset($_GET['act'])) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $key = $_POST['search'];
 
-                if (strlen($key) > 0) {
+                if (strlen(trim($key)) > 0) {
                     $products = products_select_keyword($key);
-                    $total_kq = "Có tổng số " . count($products) . " từ khóa sản phẩm liên quan đến '" . $key . "'";
+                    $total_kq = "Có " . count($products) . " sản phẩm liên quan đến từ khóa '" . $key . "'";
                     include 'products/product.php';
                 } else {
                     header('location: index.php?act=products');
@@ -247,8 +248,8 @@ if (isset($_GET['act'])) {
                 extract($_SESSION['user_kh']);
 
 
-                if (strlen($content) == 0) {
-                    $err['cmt'] = 'Không được bỏ trống.';
+                if (strlen(trim($content)) == 0) {
+                    $err['cmt'] = 'Bạn chưa điền nội dung';
                 }
 
                 if (!isset($err)) {
@@ -276,7 +277,7 @@ if (isset($_GET['act'])) {
 
 
                 if (strlen($comment_content) == 0) {
-                    $err['comment_content'] = 'Không được bỏ trống.';
+                    $err['comment_content'] = 'Bạn chưa điền nội dung';
                 }
 
                 if (!isset($err)) {
